@@ -1,5 +1,5 @@
 # Linxu_command
-# Navigation
+## Navigation
 Check the current working directory
 ```
 pwd  # stand for the Print Working Directory
@@ -30,5 +30,43 @@ Shortcut of typing the path
 Typing out these paths can be tedious, 
 we can use the Tab Completion to help us. 
 ```
+
+## Files
+Everything is actually a file
+
+Linux is an extensionless system
+```
+my image = my_image.png=my_image.txt=...
+```
+
+We can use the **file** to find out 
+```
+file [path]
+```
+Linux is case sensitive
+```
+test != tesT
+```
+Spaces in names
+```
+cd Holiday Photos # x
+cd 'Holidy Photos' # use Quotes
+cd Holidy\ Photos  # use the Espape Characters: backslash(\)
+```
+Hidden files or folders
+```
+use the .          # you can use the 'ls -a' to see the contents 
+```
+
+## Manual Pages
+
+
+
+
+
+
+
+
+
 
 
