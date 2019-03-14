@@ -209,11 +209,99 @@ to create a pattern defining a set of files or directories.
 ```
 
 ## Permissions
+Linux permissions dictate 3 you may do with a file: read,write and execute
 
+```
+r read - you may view the contents of the file.
+w write - you may change the contents of the file.
+x execute - you may execute or run the file if it is a program or script.
+```
+We can define 3 sets of people for whom we may specify permissions
+```
+owner - a single person who owns the file. (typically the person who created the file but ownership may be granted to some one else by certain users)
+group - every file belongs to a single group.
+others - everyone else who is not in the group or the owner.
+```
+### view permissions
+```
+ls -l [path]
+ ```
 
+- rwx r-- --x 1 harry users 2.7K Jan 4 07:32 
+```
+first character identifies the file type: dash(-) means it is normal file
+                                          d means it is a directory
+the following 3 character represent the permissions for owner: dash means the absence of permission
+--------------3------------------------------------ for the group
+--------------3------------------------------------ for the others
+                                 
+```
+### change permissions
+```
+chmod   [permissions] [path]               # it stands for change file mode which is a bit of a mouthfull
 
+Who are we changing the permission for? 
+[ugoa] - user (or owner), group, others, all
 
+Are we granting or revoking the permission 
+- indicated with either a plus ( + ) or minus ( - )
 
+Which permission are we setting? 
+- read ( r ), write ( w ) or execute ( x )
+```
+```
+ls -l frog.png
+-rwxr----x 1 harry users 2.7K Jan 4 07:32 frog.png
+chmod g+x frog.png
+ls -l frog.png
+-rwxr-x--x 1 harry users 2.7K Jan 4 07:32 frog.png
+chmod u-w frog.png
+ls -l frog.png
+-r-xr-x--x 1 harry users 2.7K Jan 4 07:32 frog.png
+
+```
+
+### Setting permission shorthand
+
+```
+Octal	Binary
+0	0 0 0
+1	0 0 1
+2	0 1 0
+3	0 1 1
+4	1 0 0
+5	1 0 1
+6	1 1 0
+7	1 1 1
+```
+
+```
+ls -l frog.png
+-rw-r----x 1 harry users 2.7K Jan 4 07:32 frog.png
+chmod 751 frog.png
+ls -l frog.png
+-rwxr-x--x 1 harry users 2.7K Jan 4 07:32 frog.png
+chmod 240 frog.png
+ls -l frog.png
+--w-r----- 1 harry users 2.7K Jan 4 07:32 frog.png
+
+```
+
+Permissions for Directories
+```
+r - you have the ability to read the contents of the directory (ie do an ls)
+w - you have the ability to write into the directory (ie create files and directories)
+x - you have the ability to enter that directory (ie cd)
+```
+
+### the root user
+
+On a linux system there are only 2 people usually who may change the permissions of a file or directory
+, the owner of the file or directory and the root user.
+
+### basic security
+
+##  Filters
 
 
 
