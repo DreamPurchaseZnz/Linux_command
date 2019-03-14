@@ -59,6 +59,14 @@ use the .          # you can use the 'ls -a' to see the contents
 ```
 
 ## Manual Pages
+The manual pages are a set of pages that explain every command 
+available in your system.
+
+You can invoke the manual pages with the following command
+```
+man <command to look up>
+```
+
 
 
 
