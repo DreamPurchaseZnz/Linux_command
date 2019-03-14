@@ -208,6 +208,9 @@ to create a pattern defining a set of files or directories.
 [^a-k] : any character except a-k
 ```
 
+## Permissions
+
+
 
 
 
