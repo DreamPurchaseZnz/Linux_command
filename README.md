@@ -302,9 +302,145 @@ On a linux system there are only 2 people usually who may change the permissions
 ### basic security
 
 ##  Filters
+A fitler, in context of the linux command line, is a program that accept textual data and then
+transform it in particular way.
+### View
+```
+cat                                      # look the whole article
+head [-number of lines to print] [path]  # it is a program that prints the first n lines of the article
+tail                                     # the last n lines of the article
+```
+### sort and numberate
+```
+sort                                     # it will sort alphabetically but there are many
+                                           options available to modify the sorting mechanism
+nl                                       # it stands for numbering lines
+```
+### word count
+```
+wc                                       # it stands for word count
 
+wc by default will give a count fo all 3 but using command line options we may limit it to
+just we are after
+-l         # number of lines
+-w         # number of words
+-m         # number of characters
+```
+### get column
+```
+cut [-options] [path]                   # cut is a nice program to use if your content is 
+                                          seperated into fields(columns) and you only want 
+                                          certain fields
 
+-f          # field
+-d          # seperator
+```
 
+### replace  and remove tediousness
+```
+sed <expression> [path]                   # stream editor; it effectively allows us to do a search
+                                          and replace on our data
+
+expression: 
+s                    # substitude
+/search
+/replace/
+g                    # global
+```
+```
+uniq                                      # it stands for unique and its job is to remove duplicate
+                                            lines in data
+                                            Its limitation is those lines must be adjacent
+```
+
+### reverse view
+```
+tac                                       # tac is actually cat in reverse; Given data it will
+                                            print the last line first
+```
+
+## Grep and Regular Expressions
+The basic behaviour of egrep is that it will print the entire line for every line which contains a string of characters matching the given pattern. This is important to note, we are not searching for a word but a string of characters.
+```
+egrep [command line options]<pattern>[path]   
+```
+
+```
+. (dot) - a single character.
+? - the preceding character matches 0 or 1 times only.
+* - the preceding character matches 0 or more times.
++ - the preceding character matches 1 or more times.
+{n} - the preceding character matches exactly n times.
+{n,m} - the preceding character matches at least n times and not more than m times.
+[agd] - the character is one of those included within the square brackets.
+[^agd] - the character is not one of those included within the square brackets.
+[c-f] - the dash within the square brackets operates as a range. In this case it means either the letters c, d, e or f.
+() - allows us to group several characters to behave as one.
+| (pipe symbol) - the logical OR operation.
+^ - matches the beginning of the line.
+$ - matches the end of the line.
+```
+## Piping and Redirection
+
+Every program we run on the command line automatically has three data streams connected 
+to it
+
+```
+STDIN(0)            # standard input 
+STDOUT(1)           # standard output 
+STDERR(2)           # standard error
+``` 
+Piping and redirection is the means by which we may connect these streams between programs
+and files to direct data in interesting and useful ways.
+
+### redirecting to a file
+
+Normally we will get our output on the screen, which is convenient most of the time. but sometime we
+may wish to save it into a file to keep as a record.
+```
+>              # the greater operator indicates to saved in a file insteed of printed to the screen
+                 New file | old file: cleared and rewrite
+>>             # double greater than operator, old file: the new data to be appended to the file 
+```
+### redirecting from a file
+```
+<              # we use the less than operator, read data from file and feed it into program 
+```
+
+### redirecting stderr
+```
+2>             # with a number
+```
+
+### piping
+So far we've dealt with sending data to and from files, 
+
+now we'll take a look at a mechanism for
+sending data from one program to another. It's called piping
+```
+|                                  # operator
+```
+
+```
+ls
+barry.txt bob example.png firstfile foo1 myoutput video.mpeg
+ls | head -3
+barry.txt
+bob
+example.png
+```
+```
+ls | head -3 | tail -1 > myoutput
+cat myoutput
+example.png
+```
+
+## process management
+tweak the running fo the system to better suit our need.
+
+a program is a series of instructions that tell the computer what to do.
+When we run a program, those instruction are copied into memory and space is allocated to variables
+and other stuff required to manage its execution.
 
 
 
