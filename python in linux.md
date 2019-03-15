@@ -28,3 +28,4 @@ sys.modules.keys()
 3. install completely
 
 
+## check the internet connection
