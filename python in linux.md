@@ -38,5 +38,7 @@ conda create -n venv pip python=3.6
 source activate venv
 conda install tensorflow
 conda list
+
+source deactivate 
 ```
 
