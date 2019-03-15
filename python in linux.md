@@ -21,5 +21,10 @@ sys.modules.keys()
 
 ## install anaconda
 
+1. download the anaconda.sh
+
+2. bash anaconda.sh
+
+3. install completely
 
 
