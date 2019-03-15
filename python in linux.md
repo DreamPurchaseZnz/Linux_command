@@ -28,4 +28,15 @@ sys.modules.keys()
 3. install completely
 
 
-## check the internet connection
+## install tensorflow
+```
+conda config --set proxy_servers.http http://xxxx:huawei@10.61.34.138:3128
+conda config --set proxy_servers.https http://xxxx:huawei@10.61.34.138:3128
+```
+```
+conda create -n venv pip python=3.6
+source activate venv
+conda install tensorflow
+conda list
+```
+
