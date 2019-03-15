@@ -1,4 +1,5 @@
-# Linxu_command
+# Linux_command
+[Linux tutorial](https://ryanstutorials.net/linuxtutorial/commandline.php)
 ## Navigation
 Check the current working directory
 ```
