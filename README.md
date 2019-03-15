@@ -441,6 +441,269 @@ tweak the running fo the system to better suit our need.
 a program is a series of instructions that tell the computer what to do.
 When we run a program, those instruction are copied into memory and space is allocated to variables
 and other stuff required to manage its execution.
+```
+top                   # what is currently running ?
+ps [aux]              # process
+```
+
+```
+PID  # process ID
+```
+
+### killing a crahsed process
+
+```
+ps aux | grep 'firefox'
+ryan 6978 8.8 23.5 2344096 945452 ? Sl 08:03 49:53 /usr/lib64/firefox/firefox
+
+```
+Normal users may only kill processes which they are the owner for. 
+The root user on the system may kill anyones processes.
+```
+kill [signal]<PID>
+```
+
+### foreground and background jobs
+
+```
+sleep   <seconds>                # to wait for seconds
+jobs                             # it lists currently running background jobs for us
+ampersand &                      # we are telling the terminal to run this process in the 
+                                   background
+ENTER(keyboard)                  # you will see a message come up telling you the job has completed
+ctrl + z                         # the currently running foreground process will be paused and 
+                                   moved into background
+fg                               # the terminal will bring background processes into foreground
+
+```
+
+
+
+## Bssh Scripting
+
+
+Anything you can run on the command line you may place into a script and 
+they will behave exactly the same. 
+Vice versa, anything you can put into a script, 
+you may run on the command line and again it will perform exactly the same.
+
+```
+echo <message>
+```
+```
+cat myscript.sh                               # the extension is not essential
+#!/bin/bash                                   # to identify which interpreter should be used
+                                                #! is a shebang + path
+# A simple demonstration script               # comment
+# Ryan 14/3/2019
+ 
+echo Here are the files in your current directory:      # print whatever you place after it
+ls
+
+ls -l myscript.sh                                       # a script must have the execute permission
+-rwxr-xr-x 1 ryan users 2 Jun 4 2012 myscript.sh         
+
+```
+### important Points
+- The Shebang
+
+The very first line of a script should tell the system which interpreter should be used on this file
+
+If we don't know where our interpreter is located then we may use a program called which to find out
+```
+which <program>
+```
+```
+which bash
+```
+
+- the name
+
+Linux is an extensionless system, we can call our script whatever we like
+
+
+- comments
+A comment is just a note in the script that does not get run.
+
+all you need to do is to place a bash(#) then anything after that is considered a comment.
+
+- why the ./
+
+We can override this behaviour however by supplying a path
+``` 
+echo $PATH                 # directory is seperated by colon(:)
+```
+
+-permissions
+
+### Variables
+
+```
+When we set a variable, its name followed directly by an equals sign(=)
+When we refer a variable, we must place a dollar sign ($) before the variable name
+```
+
+```
+cat variableexample.sh
+#!/bin/bash
+# A simple demonstration of variables
+# Ryan 14/3/2019
+ 
+name='Ryan'
+echo Hello $name
+```
+
+- command line arguments and More
+
+```
+$0 - The name of the script.
+$1 - $9 - Any command line arguments given to the script.
+          $1 is the first argument, $2 the second and so on.
+$# - How many command line arguments were given to the script.
+$* - All of the command line arguments.
+```
+
+- backticks
+
+the left of the 1 (one) key on the keyboard
+
+It is also possible to save the output of a command to a variable
+
+### if statements
+
+```
+if [ ] then else fi               # Perform basic conditional logic.
+```
+
+```
+cat projectbackup.sh
+#!/bin/bash
+# Backs up a single project directory
+# Ryan 14/3/2019
+ 
+if [ $# != 1 ]                                                      # if []
+then
+    echo Usage: A single argument which is the directory to backup  # if not then
+    exit
+fi                                                                  # indicate the end of the if 
+                                                                      statement
+if [ ! -d ~/projects/$1 ]
+then
+    echo 'The given directory does not seem to exist (possible typo?)'
+    exit
+fi
+date=`date +%F`
+ 
+# Do we already have a backup folder for todays date?
+if [ -d ~/projectbackups/$1_$date ]
+then
+    echo 'This project has already been backed up today, overwrite?'
+    read answer
+    if [ $answer != 'y' ]
+    then
+        exit
+    fi
+else
+    mkdir ~/projectbackups/$1_$date
+fi
+cp -R ~/projects/$1 ~/projectbackups/$1_$date
+echo Backup of $1 completed
+
+```
+
+```
+#!
+      Shebang. Indicates which interpreter a script should be run with.
+echo
+      Print a message to the screen.
+which
+      Tells you the path to a particular program.
+$
+      Placed before a variable name when we are referring to it's value.
+` `
+      Backticks. Used to save the output of a program into a variable.
+date
+      Prints the date.
+if [ ] then else fi
+      Perform basic conditional logic
+
+```
+
+## Bonus Material- Useful Commands
+
+### cron - task scheduling
+cron stands for Command Run On that allow you tell the system to run certain commands at certain times
+```
+* * * * * command to execute
+
+Where the *'s represent (in order from left to right:
+Minutes (0 - 59)
+Hours (0 - 23)
+Day of Month (1 - 31)
+Months (1 - 12)
+Day of week (0 - 7) (0 and 7 are Sunday)
+```
+
+```
+crontab -l
+crontab -e
+```
+### xargs
+Xargs is a useful tool to run a particular command for every item in a list.
+```
+
+ls
+image1.JPG image2.JPG image3.JPG image4.jpg
+
+basename -s .JPG -a *.JPG | xargs -n1 -i mv {}.JPG {}.jpg
+#     -s remove suffix, -a all files | -n1 executed once for each item, -i a replacement
+ls
+image1.jpg image2.jpg image3.jpg image4.jpg
+```
+
+### find
+```
+find /home -size +200M -exec ls -sh {} \;
+# -size a search option; -exec tell find to execute the following command for each files it finds
+
+
+452M /home/barry/backups/everything.tar.gz
+941M /home/lisa/projects/loony/servermigration.tar.gz
+768M /home/mark/Documents/gregs_birthday.mpg
+
+```
+### Tar
+Tar stands for Tape ARchive and is a popular means for 
+combining and compressing several files into a single file
+
+### Awk
+Awk is a good program to use if you need to work with data 
+that is organised into records with fields (such as the sample data below). 
+It allows you to filter the data and control how it is displayed. 
+
+
+```
+du -sh ./*
+               Find the size of every directory in your current directory.
+df -h
+               Display how much disk space is used and also free.
+basename -s .jpg -a *.jpg | xargs -n1 -i cp {}.jpg {}_original.jpg
+               Make a copy of every jpg image file in the current directory and rename adding _original.
+find /home -mtime -1
+               Find all files in the given directory (and subdirectories) which have been modified in the last 24 hours.
+shutdown -h now
+               Shutdown the system. (Replace -h with -r for reboot.)
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
