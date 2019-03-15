@@ -18,3 +18,6 @@ python:
 import sys
 sys.modules.keys()
 ```
+
+## install pip3
+
