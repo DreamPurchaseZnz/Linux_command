@@ -19,5 +19,7 @@ import sys
 sys.modules.keys()
 ```
 
-## install pip3
+## install anaconda
+
+
 
