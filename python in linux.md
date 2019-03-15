@@ -41,4 +41,14 @@ conda list
 
 source deactivate 
 ```
+## install pycharm
+download pycharm community version
+```
+tar -xf pycharm-professional-2018.2.tar.gz         # without installation
+```
+```
+cd pycharm-2018.2/bin
+./pycharm.sh
+```
+
 
