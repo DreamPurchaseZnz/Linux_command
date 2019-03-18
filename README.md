@@ -1,5 +1,6 @@
 # Linux_command
 [Linux tutorial](https://ryanstutorials.net/linuxtutorial/commandline.php)
+
 ## Navigation
 Check the current working directory
 ```
@@ -445,6 +446,7 @@ and other stuff required to manage its execution.
 ```
 top                   # what is currently running ?
 ps [aux]              # process
+df -h                 # report file system disk space usage in human way
 ```
 
 ```
