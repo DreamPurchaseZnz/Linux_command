@@ -40,4 +40,49 @@ frame                        # one at a time
 ```
 
 
+## speech processing
+
+```
+sound is a pressure wave that travel through medium such as air
+```
+- We can plot the signal in frequency domain - we call that the **spectrum**
+- It is often more useful to investigate the sound in the frequency domain, rather than, the time domain
+- Repeating pattern
+- A prism splits light into its component colours
+
+```
+Fourier principle tells us that any periodic signal can be decomposed into a sum of simple signals
+```
+
+- Spectrum of a voiced sound where x represents the frequency and the y axis represent magnitude
+
+Two distinct components
+
+- overall shape (spectral envelope)
+- spectral detail
+
+Resonance system
+- some periodic sound source generate pressure waves
+- Resonance will occur if reflected pressure waves are "in step" with new waves produced by the sound source, "in step" waves add up and 
+reinforce one another, amplitude builds up.
+- filters: magnitude with full frequencies to detect the resonant frequency.
+
+## Speech signal 
+- vocal folds
+- speech production need sound source with energy
+- speech production apparatus
+- filter model
+
+## Speech sythesis - text processing
+```
+Definition: a text-to-speech system must be
+- able to read any text
+- intelligible
+- natural sounding
+```
+
+
+
+
+
 
