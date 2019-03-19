@@ -1,4 +1,5 @@
 # Foundations for speech processing
+[Speech.zone](http://www.speech.zone/courses/speech-processing/)
 
 ## Signal
 The first step in digital signal processing is to get the signal into digital form. 
@@ -73,7 +74,7 @@ reinforce one another, amplitude builds up.
 - speech production apparatus
 - filter model
 
-## Speech sythesis - text processing
+## Speech sythesis -text processing
 ```
 Definition: a text-to-speech system must be
 - able to read any text
@@ -81,8 +82,87 @@ Definition: a text-to-speech system must be
 - natural sounding
 ```
 
+Most common method in state-of-the-art commercial and research systems
+
+```
+CHATR Japan
+Festival           UK
+```
+
+Text processing breaks the original input text into units suitable for 
+further processing
+
+- Tokenisation
+
+the system must recognise abbreviations and then expand them
+```
+Dr. Livingston vs Livingston Dr
+```
+The interpretation of numbers is comtext sensitive.
+
+- Finite state methods
+
+## Speech synthesis-pronunciation and prosody
+
+Pronunciation, including letter-to-sound models, 
+and predicting prosody. 
+All these tasks can be done with Classification And Regression Trees (CARTs).
+
+- from letters to sounds
+
+### part-of-speech (POS)
+some words have multiple possible POS categories
+
+### lexicon
+The entries have three parts:
+- head word
+- POS
+- Pronunciation
 
 
+### letter to sound
+if lexical lookup fails, we fall back on the letter-to-sound rules
+
+### Post-lexical rules
+
+```
+Text -> token -> POS -> lex  -> poslex
+```
+
+### Prosody prediction
+automatic phrase boundary predition
+
+= break strength (BB, big break)
+
+
+## speech synthesis- waveform generation
+
+Frond end
+```
+tokenize                      # individually learned from labelled data
+pos tag                       # high accuracy
+LTS
+Phase break 
+Intonation
+```
+
+TD-PSOLA (time domain-pitch synchronous overlap and add)
+
+The fundamental frequency (also called the fundamental) of a periodic signal is 
+the inverse (reciprocal) of the pitch period length. 
+We represent the fundamental frequency as F0 ("F-zero", or "F-sub-zero"). 
+
+### join smoothing
+using the LP(linear prediction) to disguise the joins
+
+Since the filter is time-varying, we need to decide how frequently to update its coefficients.
+
+LPC: linear prediction coding
+
+## speech recognition - pattern matching
+- frame based analysis of speech
+- feature vector
+- The ear does more than a simple frequency analysis. It's not just doing something like an FTT
 
 
 
