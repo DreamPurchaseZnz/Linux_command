@@ -1,6 +1,31 @@
 # Linux_command
 [Linux tutorial](https://ryanstutorials.net/linuxtutorial/commandline.php)
 
+## Install APT
+Many (if not most) apt-get operations require write access to the the APT lock file, 
+which requires administrator privileges — so most commands listed here are prefixed with sudo, 
+and require your password.
+
+APT(the advanced package tools)
+```
+apt-get                    # it is the command line tool for working with APT software packages
+```
+
+
+
+## Network
+```
+wget                             # stands for web get
+```
+Set proxy
+```
+wget -e use_proxy=yes -e http_proxy=http://xxxx:huawei@10.61.34.138:3128 $sptk_url
+```
+
+
+
+
+
 ## Navigation
 Check the current working directory
 ```
@@ -573,44 +598,26 @@ the left of the 1 (one) key on the keyboard
 It is also possible to save the output of a command to a variable
 
 ### if statements
+the basic structure of the if statement looks like this
 
 ```
-if [ ] then else fi               # Perform basic conditional logic.
-```
-
-```
-cat projectbackup.sh
-#!/bin/bash
-# Backs up a single project directory
-# Ryan 14/3/2019
- 
-if [ $# != 1 ]                                                      # if []
-then
-    echo Usage: A single argument which is the directory to backup  # if not then
-    exit
-fi                                                                  # indicate the end of the if 
-                                                                      statement
-if [ ! -d ~/projects/$1 ]
-then
-    echo 'The given directory does not seem to exist (possible typo?)'
-    exit
-fi
-date=`date +%F`
- 
-# Do we already have a backup folder for todays date?
-if [ -d ~/projectbackups/$1_$date ]
-then
-    echo 'This project has already been backed up today, overwrite?'
-    read answer
-    if [ $answer != 'y' ]
-    then
-        exit
-    fi
+if [ conditional-expression ]                          # the condition is inside the brackets
+then       
+  commands                                             # if true, the commands following the then statement are executed                                          
 else
-    mkdir ~/projectbackups/$1_$date
+  other-commands
+fi                                                     # the fi(backward) marks the end of the if block
+```
+
+```
+#!/bin/bash 
+echo “How old are you?” 
+read age 
+if [ “$age” -ge 21 ] ; then 
+echo “You are old enough. Welcome!” 
+else 
+echo “Sorry, you are not allowed to be here, you are too young!” 
 fi
-cp -R ~/projects/$1 ~/projectbackups/$1_$date
-echo Backup of $1 completed
 
 ```
 
