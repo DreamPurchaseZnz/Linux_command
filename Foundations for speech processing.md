@@ -1,5 +1,6 @@
 # Foundations for speech processing
-[Speech.zone](http://www.speech.zone/courses/speech-processing/)
+[Speech.zone.cources](http://www.speech.zone/courses/)
+[Speech.zone.speech-processing](http://www.speech.zone/courses/speech-processing/)
 
 ## Signal
 The first step in digital signal processing is to get the signal into digital form. 
@@ -164,5 +165,7 @@ LPC: linear prediction coding
 - feature vector
 - The ear does more than a simple frequency analysis. It's not just doing something like an FTT
 
+
+# [Speech synthesis](http://www.speech.zone/courses/speech-synthesis/)
 
 
