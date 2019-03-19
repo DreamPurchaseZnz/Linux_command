@@ -1,6 +1,7 @@
 # Linux_command
 [Linux tutorial](https://ryanstutorials.net/linuxtutorial/commandline.php)
 
+
 ## Install APT
 Many (if not most) apt-get operations require write access to the the APT lock file, 
 which requires administrator privileges — so most commands listed here are prefixed with sudo, 
@@ -20,6 +21,11 @@ wget                             # stands for web get
 Set proxy
 ```
 wget -e use_proxy=yes -e http_proxy=http://xxxx:huawei@10.61.34.138:3128 $sptk_url
+```
+hash command in Linux system is the built-in command of bash which is used to maintain a hash table of recently executed programs.
+It remembers and shows the program locations. It will give the full pathname of each command name.
+```
+hash
 ```
 
 
