@@ -100,7 +100,7 @@ want to use but you know what you want to achieve.
 ```
 man -k<search term>
 ```
-
+--------------------------------------------------------------------------------------------------------------------------------
 ## file manipulation
 
 ### making a directory
@@ -143,6 +143,21 @@ mv will be used to move a file or dirctory into a new directory
 rm [options]<file> 
 ```
 
+### file test operator
+```
+-e    # file exists
+-f    # file exists and is not a directory
+-d    # directory exists
+-x    # file is executable
+-w    # file is writable
+-r    # file is readable
+```
+```
+if [ -e path ]; then echo "whatever" fi
+```
+
+
+--------------------------------------------------------------------------------------------------------------------------------
 ## Vi Text Editor
 
 Two modes: Insert and Edit mode.
@@ -597,11 +612,24 @@ the left of the 1 (one) key on the keyboard
 
 It is also possible to save the output of a command to a variable
 
+Here is a list of all comparison operator
+```
+-eq # equal to
+-ne # not equal to
+-lt # less than
+-le # less than or equal to
+-gt # greater than
+-ge # greater than or equal to
+```
+
+
+
 ### if statements
 the basic structure of the if statement looks like this
 
 ```
-if [ conditional-expression ]                          # the condition is inside the brackets
+if [ conditional-expression ]                          # the condition is inside the brackets; there MUST have a SPACE between the
+                                                         the condition and bracket
 then       
   commands                                             # if true, the commands following the then statement are executed                                          
 else
@@ -621,23 +649,8 @@ fi
 
 ```
 
-```
-#!
-      Shebang. Indicates which interpreter a script should be run with.
-echo
-      Print a message to the screen.
-which
-      Tells you the path to a particular program.
-$
-      Placed before a variable name when we are referring to it's value.
-` `
-      Backticks. Used to save the output of a program into a variable.
-date
-      Prints the date.
-if [ ] then else fi
-      Perform basic conditional logic
 
-```
+
 
 ## Bonus Material- Useful Commands
 
