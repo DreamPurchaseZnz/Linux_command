@@ -3,6 +3,12 @@
 
 ## Execute combine multiple linux commands in one line
 
+```
+ A ; B  – Run A and then B, regardless of the success or failure of A
+ A && B  – Run B only if A succeeded
+ A || B  – Run B only if A failed
+```
+
 If you want to execute each command only if the previous one succeeded, then combine them using the && operator:
 ```
 cd /my_folder && rm *.jar && svn co path to repo && mvn compile package install
