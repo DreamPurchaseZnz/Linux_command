@@ -4,6 +4,26 @@
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
 ---------------------------------------------------------------------------------------------------------------------------------
+
+## Executes the content of the file passed as argument
+
+source is a bash shell built-in command that executes the content of the file passed as argument, 
+in the current shell. It has a synonym in . (period).\
+```
+. filename [arguments]
+source filename [arguments]
+```
+Be careful! ./ and source are not quite the same.
+```
+./script runs the script as an executable file, launching a new shell to run it
+source script reads and executes commands from filename in the current shell environment
+```
+Note: 
+```
+./script is not . script, but . script == source script
+```
+
+---------------------------------------------------------------------------------------------------------------------------------
 ## Group a function call
 If your $VARIABLE is a string containing spaces or other special characters, and single square brackets are used (which is a shortcut for the test command), 
 then the string may be split out into multiple words. Each of these is treated as a separate argument.
