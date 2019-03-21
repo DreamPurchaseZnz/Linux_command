@@ -1,6 +1,10 @@
 # Linux_command
 [Linux tutorial](https://ryanstutorials.net/linuxtutorial/commandline.php)
 
+## system PATH 
+```
+echo $PATH               #
+```
 
 ## Install APT
 Many (if not most) apt-get operations require write access to the the APT lock file, 
