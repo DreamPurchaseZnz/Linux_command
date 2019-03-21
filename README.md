@@ -1,6 +1,17 @@
 # Linux_command
 [Linux tutorial](https://ryanstutorials.net/linuxtutorial/commandline.php)
 
+## unzip and zip
+```
+zip [options] zipfile files_list
+$zip myfile.zip filename.txt
+```
+```
+Syntax :
+$unzip myfile.zip 
+unzip file.zip -d destination_folder
+```
+
 ## system PATH 
 ```
 echo $PATH               
