@@ -860,6 +860,24 @@ $# - How many command line arguments were given to the script.
 $* - All of the command line arguments.
 ```
 
+These are positional arguments of the script.
+
+Executing
+```
+./script.sh Hello World
+Will make
+```
+```
+$0 = ./script.sh
+$1 = Hello
+$2 = World
+```
+Note
+
+If you execute ./script.sh, $0 will give output ./script.sh 
+
+but if you execute it with bash script.sh it will give output script.sh.
+
 - backticks
 
 the left of the 1 (one) key on the keyboard
