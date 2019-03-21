@@ -50,5 +50,7 @@ tar -xf pycharm-professional-2018.2.tar.gz         # without installation
 cd pycharm-2018.2/bin
 ./pycharm.sh
 ```
-
-
+## theano
+```
+theano 1.4 is compatible with numpy 1.6
+```
