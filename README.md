@@ -3,8 +3,40 @@
 
 ## system PATH 
 ```
-echo $PATH               #
+echo $PATH               
+printf "%s\n" $PATH
 ```
+Modify current PATH
+
+In general, the export command marks an environment variable to be exported with any newly forked child processes and thus it allows a child process to inherit all marked variables.
+```
+$ export
+declare -x MAIL="/var/mail/zhengnianzu"
+declare -x NODE_HOME="/mnt/sdb/dengliqun/node-v9.0.0-rc.0-linux-x64"
+declare -x NODE_PATH="/mnt/sdb/dengliqun/node-v9.0.0-rc.0-linux-x64/lib/node_modules"
+declare -x OLDPWD="/home/zhengnianzu"
+```
+```
+export | grep http_proxy
+declare -x http_proxy="http://root:huawei@10.61.34.138:3128"
+```
+
+You can assign value before exporting using the following syntax
+```
+export VAR=value                  # VAR=value; export VAR     
+```
+```
+PATH=$PATH:~/opt/bin
+PATH=~/opt/bin:$PATH
+```
+depending on whether you want to add ~/opt/bin at the end (to be searched after all other directories, 
+in case there is a program by the same name in multiple directories) or 
+at the beginning (to be searched before all other directories).
+
+
+
+
+
 
 ## Install APT
 Many (if not most) apt-get operations require write access to the the APT lock file, 
