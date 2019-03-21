@@ -4,8 +4,99 @@
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
 ---------------------------------------------------------------------------------------------------------------------------------
+## [Shell functions library](https://bash.cyberciti.biz/guide/Shell_functions_library#How_do_I_load_myfunctions.sh_into_the_script.3F)
+```
+declare             # variables
+function            # define functions
+```
+```
+#!/bin/bash
+# set variables 
+declare -r TRUE=0
+declare -r FALSE=1
+declare -r PASSWD_FILE=/etc/passwd
 
-## Executes the content of the file passed as argument
+##################################################################
+# Purpose: Converts a string to lower case
+# Arguments:
+#   $1 -> String to convert to lower case
+##################################################################
+function to_lower() 
+{
+    local str="$@"
+    local output     
+    output=$(tr '[A-Z]' '[a-z]'<<<"${str}")
+    echo $output
+}
+##################################################################
+# Purpose: Display an error message and die
+# Arguments:
+#   $1 -> Message
+#   $2 -> Exit status (optional)
+##################################################################
+function die() 
+{
+    local m="$1"	# message
+    local e=${2-1}	# default exit status 1
+    echo "$m" 
+    exit $e
+}
+##################################################################
+# Purpose: Return true if script is executed by the root user
+# Arguments: none
+# Return: True or False
+##################################################################
+function is_root() 
+{
+   [ $(id -u) -eq 0 ] && return $TRUE || return $FALSE
+}
+
+##################################################################
+# Purpose: Return true $user exits in /etc/passwd
+# Arguments: $1 (username) -> Username to check in /etc/passwd
+# Return: True or False
+##################################################################
+function is_user_exits() 
+{
+    local u="$1"
+    grep -q "^${u}" $PASSWD_FILE && return $TRUE || return $FALSE
+}
+```
+You can load myfunctions.sh into the current shell environment, enter:
+```
+. myfunctions.sh
+
+```
+
+```
+#!/bin/bash
+# Load the  myfunctions.sh 
+# My local path is /home/vivek/lsst2/myfunctions.sh
+. /home/vivek/lsst2/myfunctions.sh
+
+# Define local variables
+# var1 is not visitable or used by myfunctions.sh
+var1="The Mahabharata is the longest and, arguably, one of the greatest epic poems in any language."
+
+# Invoke the is_root()
+is_root && echo "You are logged in as root." || echo "You are not logged in as root."
+
+# Find out if user account vivek exits or not
+is_user_exits "vivek" && echo "Account found." || echo "Account not found."
+
+# Display $var1
+echo -e "*** Orignal quote: \n${var1}"
+
+# Invoke the to_lower()
+# Pass $var1 as arg to to_lower()
+# Use command substitution inside echo
+echo -e "*** Lowercase version: \n$(to_lower ${var1})"
+```
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+## Source: Executes the content of the file passed as argument
 
 source is a bash shell built-in command that executes the content of the file passed as argument, 
 in the current shell. It has a synonym in . (period).\
