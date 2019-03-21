@@ -1,5 +1,8 @@
 # Linux_command
 [Linux tutorial](https://ryanstutorials.net/linuxtutorial/commandline.php)
+
+[bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
+
 ##  Double or single brackets, parentheses, curly braces
 
 
