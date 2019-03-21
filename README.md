@@ -10,10 +10,10 @@ then the string may be split out into multiple words. Each of these is treated a
 
 So that one variable is split out into many arguments:
 ```
-VARIABLE=$(/some/command);  
+VARIABLE= "foo bar oni" ;  
 # returns "hello world"
 
-if [ $VARIABLE == 0 ]; then
+if [ $VARIABLE == 0 ]; then            # that is, foo bar oni = 0 
   # fails as if you wrote:
   # if [ hello world == 0 ]
 fi 
@@ -22,18 +22,24 @@ Easy Fix
 
 Wrap the variable output in double quotes, forcing it to stay as one string (therefore one argument). For example,
 ```
-VARIABLE=$(/some/command);
+VARIABLE="foo bar oni";
 if [ "$VARIABLE" == 0 ]; then
   # some action
 fi 
 ```
 Or, an alternate fix is to use double square brackets (which is a shortcut for the new test command)
 ```
-VARIABLE=$(/some/command);
+VARIABLE="foo bar oni";
 if [[ $VARIABLE == 0 ]]; then
   # some action
 fi 
 ```
+
+NOTE that:
+
+== is a bash-specific alias for =, which performs a string (lexical) 
+
+comparison instead of the -eq numeric comparison. (It's backwards from Perl: the word-style operators are numeric, the symbolic ones lexical.)
 
 
 
