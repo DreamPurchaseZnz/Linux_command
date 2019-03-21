@@ -3,9 +3,42 @@
 
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
+## Find out if file exists with conditional expression
+he general syntax is as follows:
+```
+[ parameter FILE ]
+```
+OR
+```
+test parameter FILE
+```
+OR
+```
+[[ parameter FILE ]]
+```
+Where parameter can be any one of the following:
+```
+-e: Returns true value if file exists.
+-f: Return true value if file exists and regular file.
+-r: Return true value if file exists and is readable.
+-w: Return true value if file exists and is writable.
+-x: Return true value if file exists and is executable.
+-d: Return true value if exists and is a directory.
+```
+Examples are as follow
+```
+$ [ -f /etc/passwd ] && echo "File exist" || echo "File does not exist"
+$ [ -f /tmp/fileonetwo ] && echo "File exist" || echo "File does not exist"
+```
+```
+$ [ -d /var/logs ] && echo "Directory exist" || echo "Directory does not exist"
+$ [ -d /dumper/fack ] && echo "Directory exist" || echo "Directory does not exist"
+```
+
+
+
+
 ##  Double or single brackets, parentheses, curly braces
-
-
 Brackets
 ```
 if [ CONDITION ]    Test construct  
