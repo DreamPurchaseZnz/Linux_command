@@ -1,6 +1,49 @@
 # Linux_command
 [Linux tutorial](https://ryanstutorials.net/linuxtutorial/commandline.php)
 
+## Execute combine multiple linux commands in one line
+
+If you want to execute each command only if the previous one succeeded, then combine them using the && operator:
+```
+cd /my_folder && rm *.jar && svn co path to repo && mvn compile package install
+```
+
+If one of the commands fails, then all other commands following it won't be executed.
+
+If you want to execute all commands regardless of whether the previous ones failed or not, separate them with semicolons:
+```
+cd /my_folder; rm *.jar; svn co path to repo; mvn compile package install
+```
+In your case, I think you want the first case where execution of the next command depends on the success of the previous one.
+You can also put all commands in a script and execute that instead:
+```
+#! /bin/sh
+cd /my_folder \
+&& rm *.jar \
+&& svn co path to repo \
+&& mvn compile package install
+```
+(The backslashes at the end of the line are there to prevent the shell from thinking that the next line is a new command; if you omit the backslashes, you would need to write the whole command in a single line.)
+
+Save that to a file, for example myscript, and make it executable:
+```
+chmod +x myscript
+```
+You can now execute that script like other programs on the machine. But if you don't place it inside a directory listed in your PATH environment variable (for example /usr/local/bin, or on some Linux distributions ~/bin), then you will need to specify the path to that script. If it's in the current directory, you execute it with:
+```
+./myscript
+```
+The commands in the script work the same way as the commands in the first example; the next command only executes if the previous one succeeded. For unconditional execution of all commands, simply list each command on its own line:
+```
+#! /bin/sh
+cd /my_folder
+rm *.jar
+svn co path to repo
+mvn compile package install
+```
+
+
+
 ## unzip and zip
 ```
 zip [options] zipfile files_list
