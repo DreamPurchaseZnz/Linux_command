@@ -3,6 +3,7 @@
 
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
+--------------------------------------------------------------------------------------------------------------------------------
 ## Find out if file exists with conditional expression
 he general syntax is as follows:
 ```
@@ -37,7 +38,7 @@ $ [ -d /dumper/fack ] && echo "Directory exist" || echo "Directory does not exis
 
 
 
-
+--------------------------------------------------------------------------------------------------------------------------------
 ##  Double or single brackets, parentheses, curly braces
 Brackets
 ```
@@ -117,7 +118,7 @@ As you can see, the subshell allowed you to perform operations without affecting
 ```
 There is a subtle syntactic difference with ( ), though (see bash reference) ; essentially, a semicolon ; after the last command within braces is a must, and the braces {, } must be surrounded by spaces.
 
-
+--------------------------------------------------------------------------------------------------------------------------------
 ## Execute combine multiple linux commands in one line
 
 ```
@@ -165,7 +166,7 @@ svn co path to repo
 mvn compile package install
 ```
 
-
+--------------------------------------------------------------------------------------------------------------------------------
 
 ## unzip and zip
 ```
@@ -177,7 +178,7 @@ Syntax :
 $unzip myfile.zip 
 unzip file.zip -d destination_folder
 ```
-
+--------------------------------------------------------------------------------------------------------------------------------
 ## system PATH 
 ```
 echo $PATH               
@@ -212,7 +213,7 @@ at the beginning (to be searched before all other directories).
 
 
 
-
+--------------------------------------------------------------------------------------------------------------------------------
 
 
 ## Install APT
@@ -225,7 +226,7 @@ APT(the advanced package tools)
 apt-get                    # it is the command line tool for working with APT software packages
 ```
 
-
+--------------------------------------------------------------------------------------------------------------------------------
 
 ## Network
 ```
@@ -256,7 +257,7 @@ curl offers upload and sending capabilities. wget only offers plain HTTP POST su
 ```
 
 
-
+--------------------------------------------------------------------------------------------------------------------------------
 
 ## Navigation
 Check the current working directory
@@ -290,6 +291,8 @@ Typing out these paths can be tedious,
 we can use the Tab Completion to help us. 
 ```
 
+
+--------------------------------------------------------------------------------------------------------------------------------
 ## Files
 Everything is actually a file
 
@@ -317,6 +320,7 @@ Hidden files or folders
 use the .          # you can use the 'ls -a' to see the contents 
 ```
 
+--------------------------------------------------------------------------------------------------------------------------------
 ## Manual Pages
 The manual pages are a set of pages that explain every command 
 available in your system.
@@ -333,8 +337,24 @@ want to use but you know what you want to achieve.
 man -k<search term>
 ```
 --------------------------------------------------------------------------------------------------------------------------------
-## file manipulation
+## file manipulation and folder
+###  Find out tree
+```
+tree path
+```
 
+When dirname is given a pathname, it will delete any suffix beginning with the last slash ('/') character and return the result
+```
+dirname
+```
+```
+$ dirname /home/martin/docs/base.wiki
+/home/martin/docs
+
+$ dirname /home/martin/docs/.
+/home/martin/docs
+
+```
 ### making a directory
 ```
 mkdir [options]<Directory>
@@ -387,6 +407,8 @@ rm [options]<file>
 ```
 if [ -e path ]; then echo "whatever" fi
 ```
+
+
 
 
 --------------------------------------------------------------------------------------------------------------------------------
