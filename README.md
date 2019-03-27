@@ -32,13 +32,13 @@ echo "show precomm stat: $?"
 # chmod +x variable
 ```
 ```
-# ./variable aa bb
+# ./variable aa bb 
 number:2
-scname:./variable
-first:aa
+scname:./variable                  # path+filename
+first:aa                           # first positional value
 second:bb
-argume:aa bb
-show parm list:aa bb
+argume:aa bb                       # positional value
+show parm list:aa bb               # all params include keyvalue
 show process id:24544
 show precomm stat:0
 ```
