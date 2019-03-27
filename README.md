@@ -252,7 +252,10 @@ find /home -user exampleuser -mtime 7 -iname ".db"
                                    by a user named exampleuser.                                                        
 ```
 ```
-find . -type f -exec grep "example" '{}' \; -print      # find . -type f -print | xargs grep "example"
+find . -type f -exec grep "example" '{}' \; -print     
+```
+```
+find . -type f -print | xargs grep "example"
 ```
 This searches every object in the current directory hierarchy (.) that is a file (-type f) and then runs the command grep "example" for every file that satisfies the conditions. The files that match are printed on the screen (-print). The curly braces ({}) are a placeholder for the find match results. The {} are enclosed in single quotes (') to avoid handing grep a malformed file name. The -exec command is terminated with a semicolon (;), which should be escaped (\;) to avoid interpretation by the shell.
 
@@ -272,90 +275,6 @@ find . -name "*.bak" -delete    # find will delete all files that end with the c
 declare             # variables
 function            # define functions
 ```
-```
-#!/bin/bash
-# set variables 
-declare -r TRUE=0
-declare -r FALSE=1
-declare -r PASSWD_FILE=/etc/passwd
-
-##################################################################
-# Purpose: Converts a string to lower case
-# Arguments:
-#   $1 -> String to convert to lower case
-##################################################################
-function to_lower() 
-{
-    local str="$@"
-    local output     
-    output=$(tr '[A-Z]' '[a-z]'<<<"${str}")
-    echo $output
-}
-##################################################################
-# Purpose: Display an error message and die
-# Arguments:
-#   $1 -> Message
-#   $2 -> Exit status (optional)
-##################################################################
-function die() 
-{
-    local m="$1"	# message
-    local e=${2-1}	# default exit status 1
-    echo "$m" 
-    exit $e
-}
-##################################################################
-# Purpose: Return true if script is executed by the root user
-# Arguments: none
-# Return: True or False
-##################################################################
-function is_root() 
-{
-   [ $(id -u) -eq 0 ] && return $TRUE || return $FALSE
-}
-
-##################################################################
-# Purpose: Return true $user exits in /etc/passwd
-# Arguments: $1 (username) -> Username to check in /etc/passwd
-# Return: True or False
-##################################################################
-function is_user_exits() 
-{
-    local u="$1"
-    grep -q "^${u}" $PASSWD_FILE && return $TRUE || return $FALSE
-}
-```
-You can load myfunctions.sh into the current shell environment, enter:
-```
-. myfunctions.sh
-
-```
-
-```
-#!/bin/bash
-# Load the  myfunctions.sh 
-# My local path is /home/vivek/lsst2/myfunctions.sh
-. /home/vivek/lsst2/myfunctions.sh
-
-# Define local variables
-# var1 is not visitable or used by myfunctions.sh
-var1="The Mahabharata is the longest and, arguably, one of the greatest epic poems in any language."
-
-# Invoke the is_root()
-is_root && echo "You are logged in as root." || echo "You are not logged in as root."
-
-# Find out if user account vivek exits or not
-is_user_exits "vivek" && echo "Account found." || echo "Account not found."
-
-# Display $var1
-echo -e "*** Orignal quote: \n${var1}"
-
-# Invoke the to_lower()
-# Pass $var1 as arg to to_lower()
-# Use command substitution inside echo
-echo -e "*** Lowercase version: \n$(to_lower ${var1})"
-```
-
 -------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -774,6 +693,30 @@ if [ -e path ]; then echo "whatever" fi
 
 
 --------------------------------------------------------------------------------------------------------------------------------
+## Sed stream editor
+short for "stream editor", allow you to filter and transform text.
+```
+echo "Welcome to LikeGeeks page" | sed 's/page/website/'
+```
+
+Sample Commands
+The sed command replaces the first occurrence of the pattern in each line
+```
+sed 's/unix/linux/' geekfile.txt            # replaces the word “unix” with “linux” in the file
+                                              Here the “s” specifies the substitution operation
+                                              The “/” are delimiters
+                                              
+sed 's/unix/linux/2' geekfile.txt           # Use the /1, /2 etc flags to 
+                                              replace the first, second occurrence of a pattern 
+sed 's/unix/linux/g' geekfile.txt           # /g global: Replacing all the occurrence of the pattern in a line 
+sed 's/unix/linux/3g' geekfile.txt          # /3-n
+```
+```
+echo "Welcome To The Geek Stuff" | sed 's/\(\b[A-Z]\)/\(\1\)/g'   # Parenthesize first character of each word
+
+```
+
+
 ## Vi Text Editor
 
 Two modes: Insert and Edit mode.
