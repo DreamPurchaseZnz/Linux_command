@@ -3,17 +3,170 @@
 
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
-## Variable call
+---------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------
+## [Read and Set Environmental and shell variables](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps)
+The shell keeps track of all of these settings and details is through an area it maintains called the environment. 
+```
+Environmental variables                        # inherited by any child shells or processes.
+Shell variables                                # the current working directory
+```
+We can see a list of all of our environmental variables by using commands
+```
+env or printenv 
+export
+```
+we will get a list of all shell variables, environmental variables, local variables, and shell functions
+```
+set | less
+```
+### Creating Shell Variables
+```
+TEST_VAR='Hello World!'
+set | grep TEST_VAR                       # We can see this by grepping for our new variable within the set output
+```
+The echo demonstrate a way of accessing the value of any shell or environmental variable.
+```
+echo $TEST_VAR
+```
+**Variable call**
 You need to mannually invoke the variables by using
 ```
 $ varaible_name or ${variable_name}
 ```
+As you can see, reference the value of a variable by preceding it with a $ sign. 
+
+The shell takes this to mean that it should substitute the value of the variable when it comes across this.
+
 There is another point to note, you can use the following sentence to assign value
 ```
 var = $(command)
 ```
+We can spawn a new bash shell from within our current one to demonstrate:
+```
+bash
+echo $TEST_VAR
+```
+Get back to our original shell by typing 
+```
+exit
+echo $TEST_VAR        # reference again
+```
 
-## test
+### Creating Environmental Variables
+Now, let's turn our shell variable into an environmental variable. We can do this by exporting the variable. 
+The command to do so is appropriately named:
+```
+export TEST_VAR               # This will change our variable into an environmental variable
+
+printenv | grep TEST_VAR     
+```
+We can set environmental variables in a single step like this
+```
+export NEW_VAR="Testing export"
+printenv | grep NEW_VAR                  # output
+exit
+echo $NEW_VAR                            # nothing is returned
+```
+This is because environmental variables are only passed to child processes. 
+
+There isn't a built-in way of setting environmental variables of the parent shell. 
+
+This is good in most cases and prevents programs from affecting the operating environment from which they were called.
+
+The NEW_VAR variable was set as an environmental variable in our child shell. 
+
+This variable would be available to itself and any of its child shells and processes. 
+
+When we exited back into our main shell, that environment was destroyed.
+
+```
+echo $PATH               
+printf "%s\n" $PATH
+```
+Modify current PATH
+
+In general, the export command marks an environment variable to be exported with any newly forked child processes 
+and thus it allows a child process to inherit all marked variables.
+```
+$ export
+```
+```
+declare -x MAIL="/var/mail/zhengnianzu"
+declare -x NODE_HOME="/mnt/sdb/dengliqun/node-v9.0.0-rc.0-linux-x64"
+declare -x NODE_PATH="/mnt/sdb/dengliqun/node-v9.0.0-rc.0-linux-x64/lib/node_modules"
+declare -x OLDPWD="/home/zhengnianzu"
+```
+```
+export | grep http_proxy
+declare -x http_proxy="http://root:huawei@10.61.34.138:3128"
+```
+
+You can assign value before exporting using the following syntax
+```
+export VAR=value                  # VAR=value; export VAR     
+```
+```
+PATH=$PATH:~/opt/bin
+PATH=~/opt/bin:$PATH
+```
+depending on whether you want to add ~/opt/bin at the end (to be searched after all other directories, 
+in case there is a program by the same name in multiple directories) or 
+at the beginning (to be searched before all other directories).
+
+### Demoting and Unsetting Variables 
+We still have our TEST_VAR variable defined as an environmental variable.
+We can change it back into a shell variable by typing:
+```
+export -n TEST_VAR
+```
+```
+printenv | grep TEST_VAR
+set | grep TEST_VAR
+```
+
+If we want to completely unset a variable, either shell or environmental, we can do so with the unset command
+```
+unset TEST_VAR
+echo $TEST_VAR           # Nothing is returned because the variable has been unset.
+```
+### Setting Environmental Variables at Login
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+## Find out if file exists with conditional expression
+he general syntax is as follows:
+```
+[ parameter FILE ]
+```
+OR
+```
+test parameter FILE
+```
+OR
+```
+[[ parameter FILE ]]
+```
+Where parameter can be any one of the following:
+```
+-e: Returns true value if file exists.
+-f: Return true value if file exists and regular file.
+-r: Return true value if file exists and is readable.
+-w: Return true value if file exists and is writable.
+-x: Return true value if file exists and is executable.
+-d: Return true value if exists and is a directory.
+```
+Examples are as follow
+```
+$ [ -f /etc/passwd ] && echo "File exist" || echo "File does not exist"
+$ [ -f /tmp/fileonetwo ] && echo "File exist" || echo "File does not exist"
+```
+```
+$ [ -d /var/logs ] && echo "Directory exist" || echo "Directory does not exist"
+$ [ -d /dumper/fack ] && echo "Directory exist" || echo "Directory does not exist"
+```
+### test
 Checks file types and compares values.
 
 
@@ -231,39 +384,6 @@ comparison instead of the -eq numeric comparison. (It's backwards from Perl: the
 
 
 --------------------------------------------------------------------------------------------------------------------------------
-## Find out if file exists with conditional expression
-he general syntax is as follows:
-```
-[ parameter FILE ]
-```
-OR
-```
-test parameter FILE
-```
-OR
-```
-[[ parameter FILE ]]
-```
-Where parameter can be any one of the following:
-```
--e: Returns true value if file exists.
--f: Return true value if file exists and regular file.
--r: Return true value if file exists and is readable.
--w: Return true value if file exists and is writable.
--x: Return true value if file exists and is executable.
--d: Return true value if exists and is a directory.
-```
-Examples are as follow
-```
-$ [ -f /etc/passwd ] && echo "File exist" || echo "File does not exist"
-$ [ -f /tmp/fileonetwo ] && echo "File exist" || echo "File does not exist"
-```
-```
-$ [ -d /var/logs ] && echo "Directory exist" || echo "Directory does not exist"
-$ [ -d /dumper/fack ] && echo "Directory exist" || echo "Directory does not exist"
-```
-
-
 
 --------------------------------------------------------------------------------------------------------------------------------
 ##  Double or single brackets, parentheses, curly braces
@@ -405,40 +525,6 @@ Syntax :
 $unzip myfile.zip 
 unzip file.zip -d destination_folder
 ```
---------------------------------------------------------------------------------------------------------------------------------
-## system PATH 
-```
-echo $PATH               
-printf "%s\n" $PATH
-```
-Modify current PATH
-
-In general, the export command marks an environment variable to be exported with any newly forked child processes and thus it allows a child process to inherit all marked variables.
-```
-$ export
-declare -x MAIL="/var/mail/zhengnianzu"
-declare -x NODE_HOME="/mnt/sdb/dengliqun/node-v9.0.0-rc.0-linux-x64"
-declare -x NODE_PATH="/mnt/sdb/dengliqun/node-v9.0.0-rc.0-linux-x64/lib/node_modules"
-declare -x OLDPWD="/home/zhengnianzu"
-```
-```
-export | grep http_proxy
-declare -x http_proxy="http://root:huawei@10.61.34.138:3128"
-```
-
-You can assign value before exporting using the following syntax
-```
-export VAR=value                  # VAR=value; export VAR     
-```
-```
-PATH=$PATH:~/opt/bin
-PATH=~/opt/bin:$PATH
-```
-depending on whether you want to add ~/opt/bin at the end (to be searched after all other directories, 
-in case there is a program by the same name in multiple directories) or 
-at the beginning (to be searched before all other directories).
-
-
 
 --------------------------------------------------------------------------------------------------------------------------------
 
