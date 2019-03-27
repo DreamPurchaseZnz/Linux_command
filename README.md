@@ -4,6 +4,58 @@
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
 ---------------------------------------------------------------------------------------------------------------------------------
+## Change permission for a folder
+
+The other answers are correct, in that chmod -R 755 will set these permissions to all files and subfolders in the tree. But why on earth would you want to? It might make sense for the directories, but why set the execute bit on all the files?
+
+I suspect what you really want to do is set the directories to 755 and either leave the files alone or set them to 644. For this, you can use the find command. For example:
+
+To change all the directories to 755 (drwxr-xr-x):
+```
+find /opt/lampp/htdocs -type d -exec chmod 755 {} \;
+```
+To change all the files to 644 (-rw-r--r--):
+```
+find /opt/lampp/htdocs -type f -exec chmod 644 {} \;
+```
+## Find Linux Files by Name or Extension
+```
+-O1           (Default) filter based on file name first.
+-O2           File name first, then file-type.
+-O3           Allow find to automatically re-order the search based on efficient use of resources and likelihood. of success
+-maxdepth X   Search current directory as well as all sub-directories X levels deep.
+-iname        Search without regard for text case.
+-not          Return only results that do not match the test case.
+-type f       Search for files.
+-type d       Search for directories.
+```
+
+
+Use Grep to Find Files Based on Content
+```
+find . -name testfile.txt        # Find a file called testfile.txt in current and sub-directories.
+find /home -name *.jpg           # Find all .jpg files in the /home and sub-directories.
+find . -type f -empty            #Find an empty file within the current directory.
+find /home -user exampleuser -mtime 7 -iname ".db"     
+                                 # Find all .db files (ignoring text case) modified in the last 7 days 
+                                   by a user named exampleuser.                                                        
+```
+```
+find . -type f -exec grep "example" '{}' \; -print      # find . -type f -print | xargs grep "example"
+```
+This searches every object in the current directory hierarchy (.) that is a file (-type f) and then runs the command grep "example" for every file that satisfies the conditions. The files that match are printed on the screen (-print). The curly braces ({}) are a placeholder for the find match results. The {} are enclosed in single quotes (') to avoid handing grep a malformed file name. The -exec command is terminated with a semicolon (;), which should be escaped (\;) to avoid interpretation by the shell.
+
+```
+find . -name "rc.conf" -exec chmod o+r '{}' \;
+```
+This filters every object in the current hierarchy (.) for files named rc.conf and runs the chmod o+r command to modify file permissions of the find results.
+
+```
+find . -name "*.bak" -delete    # find will delete all files that end with the characters .bak:
+```
+
+
+---------------------------------------------------------------------------------------------------------------------------------
 ## [Shell functions library](https://bash.cyberciti.biz/guide/Shell_functions_library#How_do_I_load_myfunctions.sh_into_the_script.3F)
 ```
 declare             # variables
