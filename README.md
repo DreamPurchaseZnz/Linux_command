@@ -8,7 +8,10 @@ You need to mannually invoke the variables by using
 ```
 $ varaible_name or ${variable_name}
 ```
-
+There is another point to note, you can use the following sentence to assign value
+```
+var = $(command)
+```
 
 ---------------------------------------------------------------------------------------------------------------------------------
 ## Change permission for a folder
