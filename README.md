@@ -36,9 +36,7 @@ You need to mannually invoke the variables by using
 $ varaible_name or ${variable_name}
 ```
 As you can see, reference the value of a variable by preceding it with a $ sign. 
-
 The shell takes this to mean that it should substitute the value of the variable when it comes across this.
-
 There is another point to note, you can use the following sentence to assign value
 ```
 var = $(command)
@@ -70,15 +68,10 @@ exit
 echo $NEW_VAR                            # nothing is returned
 ```
 This is because environmental variables are only passed to child processes. 
-
 There isn't a built-in way of setting environmental variables of the parent shell. 
-
 This is good in most cases and prevents programs from affecting the operating environment from which they were called.
-
 The NEW_VAR variable was set as an environmental variable in our child shell. 
-
 This variable would be available to itself and any of its child shells and processes. 
-
 When we exited back into our main shell, that environment was destroyed.
 
 ```
