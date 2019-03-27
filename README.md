@@ -17,6 +17,33 @@ $!
 $0
 $_
 ```
+```
+# touch variable
+# vi variable
+#!/bin/sh
+echo "number:$#"
+echo "scname:$0"
+echo "first :$1"
+echo "second:$2"
+echo "argume:$@"
+echo "show parm list:$*"
+echo "show process id:$$"
+echo "show precomm stat: $?"
+# chmod +x variable
+```
+```
+# ./variable aa bb
+number:2
+scname:./variable
+first:aa
+second:bb
+argume:aa bb
+show parm list:aa bb
+show process id:24544
+show precomm stat:0
+```
+
+
 --------------------------------------------------------------------------------------------------------------------------------
 ## [Read and Set Environmental and shell variables](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps)
 The shell keeps track of all of these settings and details is through an area it maintains called the environment. 
