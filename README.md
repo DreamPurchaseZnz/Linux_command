@@ -4,7 +4,19 @@
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
 ---------------------------------------------------------------------------------------------------------------------------------
-
+## Special parameters
+These parameters may only be referenced; assignment to them is not allowed.
+```
+$*
+$@
+$#
+$?            # Expands to the exit status of the most recently executed foreground pipeline.
+$-
+$$            # Expands to the process ID of the shell
+$!        
+$0
+$_
+```
 --------------------------------------------------------------------------------------------------------------------------------
 ## [Read and Set Environmental and shell variables](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps)
 The shell keeps track of all of these settings and details is through an area it maintains called the environment. 
