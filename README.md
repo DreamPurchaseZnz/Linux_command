@@ -3,6 +3,8 @@
 
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
+
+
 ---------------------------------------------------------------------------------------------------------------------------------
 ## Special parameters
 These parameters may only be referenced; assignment to them is not allowed.
@@ -722,9 +724,24 @@ touch [options]<Directory>
 ```
 cp [options] <source><destination>     # created a path if the 
                                          destination doesn't exist
+cp [OPTION] Source Destination
+cp [OPTION] Source Directory
+cp [OPTION] Source-1 Source-2 Source-3 Source-n Directory                                    
 ```
+First and second syntax is used to copy Source file to Destination file or Directory.
+Third syntax is used to copy multiple Sources(files) to Directory.
 
 use the **-r** to copy a directory to another place.
+```
+$ ls
+a.txt
+
+$ cp a.txt b.txt
+
+$ ls
+a.txt  b.txt
+```
+
 
 ### Moving a file or directory
 ```
