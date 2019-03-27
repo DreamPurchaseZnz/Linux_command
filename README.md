@@ -3,6 +3,13 @@
 
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
+## Variable call
+You need to mannually invoke the variables by using
+```
+$ varaible_name or ${variable_name}
+```
+
+
 ---------------------------------------------------------------------------------------------------------------------------------
 ## Change permission for a folder
 
