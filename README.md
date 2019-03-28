@@ -694,7 +694,13 @@ if [ -e path ]; then echo "whatever" fi
 
 --------------------------------------------------------------------------------------------------------------------------------
 ## Sed stream editor
+
 short for "stream editor", allow you to filter and transform text.
+```
+s/BRE/replacement/flags
+```
+Substitute the replacement string for instances of the BRE in the pattern space. Any character other than backslash or newline can be used instead of a slash to delimit the BRE and the replacement. Within the BRE and the replacement, the BRE delimiter itself can be used as a literal character if it is preceded by a backslash."
+
 ```
 echo "Welcome to LikeGeeks page" | sed 's/page/website/'
 ```
@@ -717,7 +723,21 @@ echo "Welcome To The Geek Stuff" | sed 's/\(\b[A-Z]\)/\(\1\)/g'   # Parenthesize
 ```
 - Deleting lines from a particular file 
 
-
+#### Using different delimiters in sed
+What if, in sed, you have lots of slashes in the pattern and/or replacement?
+```
+sed 's/\/a\/b\/c\//\/d\/e\/f\//'    # change "a/b/c/" to "d/e/f/"
+```
+the so-called toothsaw effect. but that is ugly and unreadable. 
+It's a not-so-known fact that sed can use any character as separator for the "s" command
+```
+sed 's_/a/b/c/_/d/e/f/_'
+sed 's;/a/b/c/;/d/e/f/;'
+sed 's#/a/b/c/#/d/e/f/#'
+sed 's|/a/b/c/|/d/e/f/|'
+sed 's /a/b/c/ /d/e/f/ '       # yes, even space
+# etc.
+```
 
 ## Vi Text Editor
 
