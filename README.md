@@ -295,6 +295,17 @@ Note:
 ```
 ./script is not . script, but . script == source script
 ```
+The sourced file can be:
+```
+script.sh
+#! /bin/sh
+var1="hello the world"              # classical variable defination 
+```
+Then use source to export variables to shell environment
+```
+source  script.sh
+```
+
 
 ---------------------------------------------------------------------------------------------------------------------------------
 ## Group a function call
