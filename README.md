@@ -700,7 +700,7 @@ echo "Welcome to LikeGeeks page" | sed 's/page/website/'
 ```
 
 Sample Commands
-The sed command replaces the first occurrence of the pattern in each line
+- The sed command replaces the first occurrence of the pattern in each line
 ```
 sed 's/unix/linux/' geekfile.txt            # replaces the word “unix” with “linux” in the file
                                               Here the “s” specifies the substitution operation
@@ -715,6 +715,8 @@ sed 's/unix/linux/3g' geekfile.txt          # /3-n
 echo "Welcome To The Geek Stuff" | sed 's/\(\b[A-Z]\)/\(\1\)/g'   # Parenthesize first character of each word
 
 ```
+- Deleting lines from a particular file 
+
 
 
 ## Vi Text Editor
