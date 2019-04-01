@@ -42,6 +42,11 @@ conda list
 
 source deactivate   or conda deactivate venv
 ```
+To see all the environments
+```
+conda info --envs
+```
+
 ## install pycharm
 download pycharm community version
 ```
