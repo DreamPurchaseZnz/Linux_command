@@ -79,9 +79,10 @@ Different Versions of Tensorflow support different cuDNN and CUDA Verisons
 (In this table CUDA has an integer value but when you go to download it is actually a float which makes numbering and compatibility more difficult). 
 Also cuDNN and conda were not a part of conda.
 
-SO USE CONDA
+SO USE CONDA, the [package lib](https://repo.anaconda.com/pkgs/main/linux-64/)
 ```
 conda create --name tf_gpu tensorflow-gpu 
+conda create --name tf_gpu tensorflow-gpu==1.4.1              # the version needs to be found in the library
 ```
 
 NOTE: solve the status: CUDA diriver version is insufficient for CUDA runtime version
