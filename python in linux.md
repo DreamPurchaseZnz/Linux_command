@@ -95,7 +95,11 @@ Then according the compatible version, download the driver and install.
 ```
 ./NVIDA.run             # cuda 9.2     ->  driver 396.26
 ```
-
+### Testing
+```
+import tensorflow as tf
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+```
 
 
 
