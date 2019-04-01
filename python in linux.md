@@ -35,11 +35,12 @@ conda config --set proxy_servers.https http://xxxx:huawei@10.61.34.138:3128
 ```
 ```
 conda create -n venv pip python=3.6
-source activate venv
+source activate venv or conda activate venv
+
 conda install tensorflow
 conda list
 
-source deactivate 
+source deactivate   or conda deactivate venv
 ```
 ## install pycharm
 download pycharm community version
