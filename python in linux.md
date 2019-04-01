@@ -67,11 +67,16 @@ lspci | grep -i --color 'vga\|3d\|2d'
 lshw -C display
 nvidia-smi
 ```
+### Installation
+
 Different Versions of Tensorflow support different cuDNN and CUDA Verisons 
 (In this table CUDA has an integer value but when you go to download it is actually a float which makes numbering and compatibility more difficult). 
 Also cuDNN and conda were not a part of conda.
 
-
+SO USE CONDA
+```
+conda create --name tf_gpu tensorflow-gpu 
+```
 
 
 
