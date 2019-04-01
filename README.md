@@ -507,6 +507,7 @@ There is a subtle syntactic difference with ( ), though (see bash reference) ; e
  A ; B  – Run A and then B, regardless of the success or failure of A
  A && B  – Run B only if A succeeded
  A || B  – Run B only if A failed
+ A | B   - the output of A will be tranported as the input of B
 ```
 
 If you want to execute each command only if the previous one succeeded, then combine them using the && operator:
