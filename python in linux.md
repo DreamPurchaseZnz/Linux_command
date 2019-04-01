@@ -55,3 +55,30 @@ cd pycharm-2018.2/bin
 ```
 theano 1.4 is compatible with numpy 1.6
 ```
+
+## install tensorflow with gpu
+
+### find out the GPU exists in your computer
+```
+cat /proc/cpuinfo
+```
+```
+lspci | grep -i --color 'vga\|3d\|2d'
+lshw -C display
+nvidia-smi
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
