@@ -61,7 +61,7 @@ cd pycharm-2018.2/bin
 theano 1.4 is compatible with numpy 1.6
 ```
 
-## install tensorflow with gpu
+## Install tensorflow with gpu
 
 ### find out the GPU exists in your computer
 ```
@@ -72,7 +72,7 @@ lspci | grep -i --color 'vga\|3d\|2d'
 lshw -C display
 nvidia-smi
 ```
-### Installation
+### Installation of tensorlfow
 
 Different Versions of Tensorflow support different cuDNN and CUDA Verisons 
 (In this table CUDA has an integer value but when you go to download it is actually a float which makes numbering and compatibility more difficult). 
@@ -83,8 +83,16 @@ SO USE CONDA
 conda create --name tf_gpu tensorflow-gpu 
 ```
 
+NOTE: solve the status: CUDA diriver version is insufficient for CUDA runtime version
 
-
+First check the driver version
+```
+cat /proc/driver/nvidia/version
+```
+Then according the compatible version, download the driver and install.
+```
+cuda 9.2     -----> >= driver 396.26
+```
 
 
 
