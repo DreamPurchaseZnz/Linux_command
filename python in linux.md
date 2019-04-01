@@ -71,6 +71,7 @@ cat /proc/cpuinfo
 lspci | grep -i --color 'vga\|3d\|2d'
 lshw -C display
 nvidia-smi
+hwinfo --gfxcard --short
 ```
 ### Installation of tensorlfow
 
@@ -91,7 +92,7 @@ cat /proc/driver/nvidia/version
 ```
 Then according the compatible version, download the driver and install.
 ```
-cuda 9.2     -----> >= driver 396.26
+./NVIDA.run             # cuda 9.2     ->  driver 396.26
 ```
 
 
