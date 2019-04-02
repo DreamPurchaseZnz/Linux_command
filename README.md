@@ -32,17 +32,31 @@ readlink:
 
 ## [Read and Set Environmental and shell variables](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps)
 
+
+### Set, env and export
+set or unset values of shell options and positional parameters
+```
+set [--abefhkmnptuvxBCHP] [-o option-name] [arg ...]
+```
+Change the value of shell attributes and positional parameters or display the names and values of shell variable
+```
+set -e Exit immediately if a command exits with a non-zero status.
+```
+
+
 ### Special parameters
 These parameters may only be referenced; assignment to them is not allowed.
 ```
-$*
+$0            # The name of the script.
+$1 - $9       # Any command line arguments given to the script.
+                $1 is the first argument, $2 the second and so on.
+$#            # How many command line arguments were given to the script.
+$*            # All of the command line arguments.
 $@
-$#
 $?            # Expands to the exit status of the most recently executed foreground pipeline.
 $-
 $$            # Expands to the process ID of the shell
 $!        
-$0
 $_
 env or printenv            # show env variables
 set | less                 # all the variables, shell and env
@@ -51,8 +65,8 @@ $VAR or ${VAR}             # refer a variable
 $(command)                 # command substitution
 export var                 # set env var
 unset                      # degrade var
-
 ```
+An example is as follows:
 ```
 # touch variable
 # vi variable
@@ -67,6 +81,7 @@ echo "show process id:$$"
 echo "show precomm stat: $?"
 # chmod +x variable
 ```
+Output results are :
 ```
 # ./variable aa bb 
 number:2
@@ -78,8 +93,6 @@ show parm list:aa bb               # all params include keyvalue
 show process id:24544
 show precomm stat:0
 ```
-
-
 
 The shell keeps track of all of these settings and details is through an area it maintains called the environment. 
 ```
@@ -98,14 +111,11 @@ set | less
 ### Creating Shell Variables
 ```
 TEST_VAR='Hello World!'
-set | grep TEST_VAR                       # We can see this by grepping for our new variable within the set output
+set | grep TEST_VAR                       # We can see this by grepping for our new variable 
+                                            within the set output
 ```
-The echo demonstrate a way of accessing the value of any shell or environmental variable.
-```
-echo $TEST_VAR
-```
-Variable call
-You need to mannually invoke the variables by using
+- When we set a variable, its name followed directly by an equals sign(=)
+- When we refer a variable, we must place a dollar sign ($) before the variable name
 ```
 $ varaible_name or ${variable_name}
 ```
@@ -115,6 +125,11 @@ There is another point to note, you can use the following sentence to assign val
 ```
 var = $(command)
 ```
+The echo demonstrate a way of accessing the value of any shell or environmental variable.
+```
+echo $TEST_VAR
+```
+
 We can spawn a new bash shell from within our current one to demonstrate:
 ```
 bash
@@ -131,7 +146,8 @@ Now, let's turn our shell variable into an environmental variable. We can do thi
 The command to do so is appropriately named:
 ```
 export TEST_VAR               # This will change our variable into an environmental variable
-
+```
+```
 printenv | grep TEST_VAR     
 ```
 We can set environmental variables in a single step like this
@@ -200,67 +216,6 @@ echo $TEST_VAR           # Nothing is returned because the variable has been uns
 ```
 ### Setting Environmental Variables at Login
 
-
-### Variables
-
-```
-When we set a variable, its name followed directly by an equals sign(=)
-When we refer a variable, we must place a dollar sign ($) before the variable name
-```
-
-```
-cat variableexample.sh
-#!/bin/bash
-# A simple demonstration of variables
-# Ryan 14/3/2019
- 
-name='Ryan'
-echo Hello $name
-```
-
-- command line arguments and More
-
-```
-$0 - The name of the script.
-$1 - $9 - Any command line arguments given to the script.
-          $1 is the first argument, $2 the second and so on.
-$# - How many command line arguments were given to the script.
-$* - All of the command line arguments.
-```
-
-These are positional arguments of the script.
-
-Executing
-```
-./script.sh Hello World
-Will make
-```
-```
-$0 = ./script.sh
-$1 = Hello
-$2 = World
-```
-Note
-
-If you execute ./script.sh, $0 will give output ./script.sh 
-
-but if you execute it with bash script.sh it will give output script.sh.
-
-- backticks
-
-the left of the 1 (one) key on the keyboard
-
-It is also possible to save the output of a command to a variable
-
-Here is a list of all comparison operator
-```
--eq # equal to
--ne # not equal to
--lt # less than
--le # less than or equal to
--gt # greater than
--ge # greater than or equal to
-```
 
 
 ---------------------------------------------------------------------------------------------------------------------------------
