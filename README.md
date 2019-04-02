@@ -3,11 +3,36 @@
 
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
+## Realpath and readlink
+Both realpath and readlink commands display resolved path for symlinks in the output.
+```
+realpath [OPTION]... FILE...                    # the resolved absolute file name
+readlink [OPTION]... FILE..                     # print resolved symbolic links or canonical file names
+```
 
+```
+readlink:
+-f, --canonicalize
+      canonicalize  by  following  every symlink in every component of
+      the given name recursively; all  but  the  last  component  must
+      exist
+
+-e, --canonicalize-existing
+   canonicalize  by  following  every symlink in every component of
+   the given name recursively, all components must exist
+
+-m, --canonicalize-missing
+   canonicalize by following every symlink in  every  component  of
+   the  given  name recursively, without requirements on components
+   existence
+```
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
 
 ## [Read and Set Environmental and shell variables](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps)
 
-## Special parameters
+### Special parameters
 These parameters may only be referenced; assignment to them is not allowed.
 ```
 $*
