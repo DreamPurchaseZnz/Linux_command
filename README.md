@@ -3,6 +3,31 @@
 
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
+
+## check free disk
+```
+df                   # disk free; shows available and used disk space
+-h                   # show the disk space in human-readable format
+-a                   # show complete disk
+```
+```
+du                   # shows the disk usage of files, folders, etc
+-a                   # all
+-s                   # specific file or directory
+```
+```
+ls -al
+```
+```
+stat  <file/folder>   # display the size and other status 
+```
+```
+fdisk -l              # shows disk size along with disk partitioning information
+```
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
 ## Realpath and readlink
 Both realpath and readlink commands display resolved path for symlinks in the output.
 ```
