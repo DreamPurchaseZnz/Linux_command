@@ -40,8 +40,29 @@ set [--abefhkmnptuvxBCHP] [-o option-name] [arg ...]
 ```
 Change the value of shell attributes and positional parameters or display the names and values of shell variable
 ```
-set -e Exit immediately if a command exits with a non-zero status.
+set -e                   # Exit immediately if a command exits with a non-zero status.
+set -o pipefail          # the return value of a pipeline is the status of
+                           the last command to exit with a non-zero status,
+                           or zero if no command exited with a non-zero status
 ```
+
+```
+(set -euxo pipefail; echo hi ;non-existent-command; echo bye)
+
+hi
+non-exist: command not found
+```
+
+```
+(%set -euxo pipefail; echo hi ;non-existent-command; echo bye)
+
+hi
+non-exist: command not found
+bye
+```
+
+
+
 
 
 ### Special parameters
