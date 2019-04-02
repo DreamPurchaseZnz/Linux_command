@@ -791,6 +791,10 @@ mv will be used to move a file or dirctory into a new directory
 ```
 rm [options]<file> 
 ```
+```
+-f                       # delete compulsively
+-r                       # recursive
+```
 
 ### file test operator
 ```
