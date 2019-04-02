@@ -41,24 +41,31 @@ set [--abefhkmnptuvxBCHP] [-o option-name] [arg ...]
 Change the value of shell attributes and positional parameters or display the names and values of shell variable
 ```
 set -e                   # Exit immediately if a command exits with a non-zero status.
-set -o pipefail          # the return value of a pipeline is the status of
-                           the last command to exit with a non-zero status,
-                           or zero if no command exited with a non-zero status
+set -o pipefail          # Pipelines fail on the first command which fails instead of dying later on down the pipeline. 
+                           This is especially good when cmd3 is a command that always succeeds (like echo):
+                           cmd1 | cmd2 | cmd3
+set -x                   # print each command to the stderr before running it.
 ```
-
 ```
 (set -euxo pipefail; echo hi ;non-existent-command; echo bye)
-
 hi
 non-exist: command not found
 ```
-
 ```
 (%set -euxo pipefail; echo hi ;non-existent-command; echo bye)
-
 hi
 non-exist: command not found
 bye
+```
+```
+cmd1 && cmd2 && cmd3 
+```
+is equivalent to
+```
+set -e
+cmd1
+cmd2
+cmd3
 ```
 
 
