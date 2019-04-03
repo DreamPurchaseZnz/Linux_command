@@ -23,7 +23,7 @@ if [ conditional-expression ]                          # the condition is inside
                                                          the condition and bracket
 then       
   commands                                             # if true, the commands following 
-                                                         the then statement are executed                                          
+                                                         the then statement are executed
 else
   other-commands
 fi                                                     # the fi(backward) marks the end of the if block
