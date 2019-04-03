@@ -18,10 +18,12 @@ The word is expanded to produce a pattern and matched according to the rules des
 the basic structure of the if statement looks like this
 
 ```
-if [ conditional-expression ]                          # the condition is inside the brackets; there MUST have a SPACE between the
+if [ conditional-expression ]                          # the condition is inside the brackets; there MUST 
+                                                         have a SPACE between the
                                                          the condition and bracket
 then       
-  commands                                             # if true, the commands following the then statement are executed                                          
+  commands                                             # if true, the commands following 
+                                                         the then statement are executed                                          
 else
   other-commands
 fi                                                     # the fi(backward) marks the end of the if block
