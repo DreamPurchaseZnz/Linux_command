@@ -8,9 +8,13 @@
 
 ## magic colon
 
-Bash and sh both use colons (":") in more than one context. You'll see it used as a separator ($PATH, for example), as a modifier (${n:="foo"}) and as a null operator ("while :").
-
-
+Bash and sh both use colons (":") in more than one context. 
+You'll see it used as 
+```
+a separator ($PATH, for example),
+a modifier (${n:="foo"})
+a null operator ("while :")
+```
 ## Shell parameter expansion
 ```
 ${parameter%word}
@@ -1331,8 +1335,35 @@ may wish to save it into a file to keep as a record.
 
 ### redirecting stderr
 ```
-2>             # with a number
+0            # STDIN
+1            # STDOUT
+2            # STDERR
 ```
+```
+app    1> /2>              #  redirect stdout/stderr to a file
+1>                        ->  can be shortened to just >
+1>foo 2>&1                ->  >&foo or &>foo
+2>&1 | program            ->  |& program
+```
+The following is the same
+```
+app    1>file1  2>file2       
+app    &>file1               # redirect all to the same file
+app    1>/dev/null 2>&1      # points file descriptor #2 to where #1 already pointing
+app    2>/dev/null 1>&2
+```
+Send the output to standard error instead of standard out.
+```
+echo >&2 "message"                # redirect stdout from echo command to stderr
+```
+```
+> redirect standard output (implicit 1>)
+& what comes next is a file descriptor, not a file (only for right hand side of >)
+2 stderr file descriptor number
+```
+
+
+
 
 ### piping
 So far we've dealt with sending data to and from files, 
