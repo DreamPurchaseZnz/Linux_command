@@ -3,6 +3,156 @@
 
 [bash reference manual](http://tiswww.case.edu/php/chet/bash/bashref.html#SEC31)
 
+## If and for statements
+
+### if statements
+the basic structure of the if statement looks like this
+
+```
+if [ conditional-expression ]                          # the condition is inside the brackets; there MUST have a SPACE between the
+                                                         the condition and bracket
+then       
+  commands                                             # if true, the commands following the then statement are executed                                          
+else
+  other-commands
+fi                                                     # the fi(backward) marks the end of the if block
+```
+
+```
+#!/bin/bash 
+echo “How old are you?” 
+read age 
+if [ “$age” -ge 21 ] ; then 
+echo “You are old enough. Welcome!” 
+else 
+echo “Sorry, you are not allowed to be here, you are too young!” 
+fi
+
+```
+### for statement
+1) In this form the for statement executes the commands enclosed in a body, once for each item in the list.
+```
+for varname in list
+do
+       command1
+       command2
+       ..
+done
+```
+Caution: 
+The list option contains list of values. The list can be a variable that contain several words sperated by spaces(a b c), but not comma (a, b, c). Otherwise, the comma will be treated as part of the value, instead of"mon", it will use "Mon,"
+
+2) The list of values should not be enclosed in a double quote, otherwise it will be treated as a single value.
+```
+for (( expr1; expr2; expr3 ))    # initialization, condition, updation
+do
+       command1
+       command2
+       ..
+done
+```
+In the above bash for command syntax
+```
+expr1        # it is evaluated before the first iteration, initialize the variables for the loop
+expr2        # all the commands between the do and the done is executed repeatly until the value of expr2 is True
+expr3        # it is evaluated after each iteration. This is usually used to increment a loop counter.
+```
+3) Don't specify the list; get it from the postional parameters.
+```
+$ cat for3.sh
+i=1
+for day
+do
+ echo "Weekday $((i++)) : $day"
+done
+
+$ ./for3.sh Mon Tue Wed Thu Fri
+Weekday 1 : Mon
+Weekday 2 : Tue
+Weekday 3 : Wed
+Weekday 4 : Thu
+Weekday 5 : Fri
+```
+4) Unix command output as list values after “in” keyword
+The list is enclosed by the back-tick \`\` as shown below.
+```
+$ cat for4.sh
+i=1
+for username in `awk -F: '{print $1}' /etc/passwd`
+do
+ echo "Username $((i++)) : $username"
+done
+
+$ ./for4.sh
+Username 1 : ramesh
+Username 2 : john
+Username 3 : preeti
+Username 4 : jason
+..
+```
+
+5) Loop through files and directories in a for loop
+
+6) Break out of the for loop - break command
+```
+$ cat for6.sh
+i=1
+for day in Mon Tue Wed Thu Fri
+do
+ echo "Weekday $((i++)) : $day"
+ if [ $i -eq 3 ]; then
+   break;
+ fi
+done
+
+$ ./for6.sh
+Weekday 1 : Mon
+Weekday 2 : Tue
+```
+7) Continue from the top of the for loop
+
+Under certain conditions, you can ignore the rest of the commands in the for loop, 
+and continue the loop from the top again 
+```
+$ cat for7.sh
+i=1
+for day in Mon Tue Wed Thu Fri Sat Sun
+do
+ echo -n "Day $((i++)) : $day"
+ if [ $i -eq 7 -o $i -eq 8 ]; then
+   echo " (WEEKEND)"
+   continue;
+ fi
+ echo " (weekday)"
+done
+
+$ ./for7.sh
+Day 1 : Mon (weekday)
+Day 2 : Tue (weekday)
+Day 3 : Wed (weekday)
+Day 4 : Thu (weekday)
+Day 5 : Fri (weekday)
+Day 6 : Sat (WEEKEND)
+Day 7 : Sun (WEEKEND)
+```
+8) Bash for loop using C program syntax 
+
+9) Infinite Bash for loop
+
+When you don’t provide the start, condition, and increment in the bash C-style for loop, it will become infinite loop. You need to press Ctrl-C to stop the loop.
+```
+for (( ; ; ))
+```
+
+10) Range of numbers after “in” keyword
+```
+for num in {1..10}
+```
+11) range of numbers with increments after in keyword
+```
+for num in {1..10..2}
+```
+
 
 ## check free disk
 ```
@@ -1291,33 +1441,6 @@ echo $PATH                 # directory is seperated by colon(:)
 ```
 
 -permissions
-
-
-
-### if statements
-the basic structure of the if statement looks like this
-
-```
-if [ conditional-expression ]                          # the condition is inside the brackets; there MUST have a SPACE between the
-                                                         the condition and bracket
-then       
-  commands                                             # if true, the commands following the then statement are executed                                          
-else
-  other-commands
-fi                                                     # the fi(backward) marks the end of the if block
-```
-
-```
-#!/bin/bash 
-echo “How old are you?” 
-read age 
-if [ “$age” -ge 21 ] ; then 
-echo “You are old enough. Welcome!” 
-else 
-echo “Sorry, you are not allowed to be here, you are too young!” 
-fi
-
-```
 
 
 
