@@ -5,6 +5,12 @@
 
 [bash_reference Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion)
 
+
+## magic colon
+
+Bash and sh both use colons (":") in more than one context. You'll see it used as a separator ($PATH, for example), as a modifier (${n:="foo"}) and as a null operator ("while :").
+
+
 ## Shell parameter expansion
 ```
 ${parameter%word}
