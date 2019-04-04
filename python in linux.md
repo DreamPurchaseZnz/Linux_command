@@ -27,6 +27,15 @@ sys.modules.keys()
 
 3. install completely
 
+4. install anthor lib
+```
+matplotlib, scipy, numpy
+```
+
+
+
+
+
 
 ## install tensorflow
 ```
@@ -100,7 +109,6 @@ Then according the compatible version, download the driver and install.
 import tensorflow as tf
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 ```
-
 
 
 
