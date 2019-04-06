@@ -29,7 +29,7 @@ sys.modules.keys()
 
 4. install anthor lib
 ```
-matplotlib, scipy, numpy
+matplotlib, scipy, numpy， sklearn, pandas, scikit-learn
 ```
 
 
