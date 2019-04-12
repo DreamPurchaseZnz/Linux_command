@@ -106,11 +106,6 @@ tensorflow_gpu-1.3.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	6	8
 tensorflow_gpu-1.2.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	5.1	8
 tensorflow_gpu-1.1.0	3.5	MSVC 2015 update 3	Cmake v3.6.3	5.1	8
 tensorflow_gpu-1.0.0	3.5	MSVC 2015 update 3	Cmake v3.6.3	5.1	8
---------------------- 
-作者：LoveWeeknd 
-来源：CSDN 
-原文：https://blog.csdn.net/oMoDao1/article/details/83241074 
-版权声明：本文为博主原创文章，转载请附上博文链接！
 ```
 
 NOTE: solve the status: CUDA diriver version is insufficient for CUDA runtime version
