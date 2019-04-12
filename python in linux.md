@@ -55,6 +55,10 @@ To see all the environments
 ```
 conda info --envs
 ```
+To reset a conda environment
+```
+conda list --revisions and conda install --rev REV_NUM.
+```
 
 ## install pycharm
 download pycharm community version
