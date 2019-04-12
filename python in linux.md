@@ -93,6 +93,25 @@ SO USE CONDA, the [package lib](https://repo.anaconda.com/pkgs/main/linux-64/)
 conda create --name tf_gpu tensorflow-gpu 
 conda create --name tf_gpu tensorflow-gpu==1.4.1              # the version needs to be found in the library
 ```
+```
+tensorflow_gpu-1.11.0	3.5-3.6	MSVC 2015 update 3	Bazel 0.15.0	7	9
+tensorflow_gpu-1.10.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	7	9
+tensorflow_gpu-1.9.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	7	9
+tensorflow_gpu-1.8.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	7	9
+tensorflow_gpu-1.7.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	7	9
+tensorflow_gpu-1.6.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	7	9
+tensorflow_gpu-1.5.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	7	9
+tensorflow_gpu-1.4.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	6	8
+tensorflow_gpu-1.3.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	6	8
+tensorflow_gpu-1.2.0	3.5-3.6	MSVC 2015 update 3	Cmake v3.6.3	5.1	8
+tensorflow_gpu-1.1.0	3.5	MSVC 2015 update 3	Cmake v3.6.3	5.1	8
+tensorflow_gpu-1.0.0	3.5	MSVC 2015 update 3	Cmake v3.6.3	5.1	8
+--------------------- 
+作者：LoveWeeknd 
+来源：CSDN 
+原文：https://blog.csdn.net/oMoDao1/article/details/83241074 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+```
 
 NOTE: solve the status: CUDA diriver version is insufficient for CUDA runtime version
 
@@ -104,6 +123,19 @@ Then according the compatible version, download the driver and install.
 ```
 ./NVIDA.run             # cuda 9.2     ->  driver 396.26
 ```
+```
+CUDA Toolkit	Linux x86_64 Driver Version
+CUDA 10.1 (10.1.105)	>= 418.39
+CUDA 10.0 (10.0.130)	>= 410.48
+CUDA 9.2 (9.2.88)	>= 396.26
+CUDA 9.1 (9.1.85)	>= 390.46
+CUDA 9.0 (9.0.76)	>= 384.81
+CUDA 8.0 (8.0.61 GA2)	>= 375.26
+CUDA 8.0 (8.0.44)	>= 367.48
+CUDA 7.5 (7.5.16)	>= 352.31
+CUDA 7.0 (7.0.28)	>= 346.46
+```
+
 ### Testing
 ```
 import tensorflow as tf
