@@ -87,9 +87,8 @@ cd pycharm-2018.2/bin
 theano 1.4 is compatible with numpy 1.6
 ```
 
-## Install tensorflow with gpu
 
-### find out the GPU exists in your computer
+## find out the GPU exists in your computer
 ```
 cat /proc/cpuinfo
 ```
@@ -99,6 +98,7 @@ lshw -C display
 nvidia-smi
 hwinfo --gfxcard --short
 ```
+## Install tensorflow with gpu
 ### Installation of tensorlfow
 
 Different Versions of Tensorflow support different cuDNN and CUDA Verisons 
