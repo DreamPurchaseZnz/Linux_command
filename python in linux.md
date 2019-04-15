@@ -142,14 +142,29 @@ CUDA 7.5 (7.5.16)	>= 352.31
 CUDA 7.0 (7.0.28)	>= 346.46
 ```
 
-### Testing
+### Tensorflow Testing
 ```
 import tensorflow as tf
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 ```
 
+### install sonnet
+There may be some mistakes when the pip meets the conda install command
 
+Use conda to install offline package and then run this command with the path to the tar file:
+```
+conda install --offline C:\pymc-2.3.5-np110py35_0.tar.bz2
+```
 
+Testing
+```
+$ cd ~/
+$ python
+>>> import tensorflow as tf
+>>> import sonnet as snt
+>>> input_ = tf.zeros(3, 5)
+>>> output = snt.Linear(10)(input_)
+```
 
 
 
