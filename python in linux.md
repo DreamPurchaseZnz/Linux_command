@@ -168,7 +168,7 @@ $ cd ~/
 $ python
 >>> import tensorflow as tf
 >>> import sonnet as snt
->>> input_ = tf.zeros(3, 5)
+>>> input_ = tf.zeros((3, 5))
 >>> output = snt.Linear(10)(input_)
 ```
 
