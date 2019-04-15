@@ -60,6 +60,13 @@ To reset a conda environment
 conda list --revisions and conda install --rev REV_NUM.
 ```
 
+## Remove the env in conda
+```
+conda env remove -n ENV_NAME
+```
+conda env remove -n ENV_NAME
+to remove the environment with that name. (--name is equivalent to -n)
+
 ## install pycharm
 download pycharm community version
 ```
