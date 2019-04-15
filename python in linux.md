@@ -42,6 +42,12 @@ matplotlib, scipy, numpy， sklearn, pandas, scikit-learn
 conda config --set proxy_servers.http http://xxxx:huawei@10.61.34.138:3128
 conda config --set proxy_servers.https http://xxxx:huawei@10.61.34.138:3128
 ```
+When you face the problem-"condahttperror http 000 connection failed for url", Try running following command: 
+```
+conda config --set ssl_verify no
+```
+
+
 ```
 conda create -n venv pip python=3.6
 source activate venv or conda activate venv
