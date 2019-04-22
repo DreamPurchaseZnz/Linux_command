@@ -97,6 +97,7 @@ lspci | grep -i --color 'vga\|3d\|2d'
 lshw -C display
 nvidia-smi
 hwinfo --gfxcard --short
+nvidia-smi -l 3
 ```
 ## Install tensorflow with gpu
 ### Installation of tensorlfow
