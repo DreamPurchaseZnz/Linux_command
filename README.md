@@ -708,7 +708,7 @@ There is a subtle syntactic difference with ( ), though (see bash reference) ; e
 ## Execute combine multiple linux commands in one line
 
 ```
- A ; B  – Run A and then B, regardless of the success or failure of A
+ A ; B   - Run A and then B, regardless of the success or failure of A
  A && B  – Run B only if A succeeded
  A || B  – Run B only if A failed
  A | B   - the output of A will be tranported as the input of B
