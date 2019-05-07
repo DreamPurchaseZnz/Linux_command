@@ -16,7 +16,9 @@ x = eXtract, this indicated an extraction c = create to create )
 v = verbose (optional) the files with relative locations will be displayed.
 z = gzip-ped; j = bzip2-zipped
 f = from/to file ... (what is next after the f is the archive file)
-C = directory. In c and r mode, this changes the directory before adding the following files. In x mode, changes directoriy after opening the archive but before extracting entries from the archive.
+C = directory. In c and r mode, this changes the directory 
+before adding the following files. In x mode, changes directoriy after 
+opening the archive but before extracting entries from the archive.
 ```
 The files will be extracted in the current folder (most of the times in a folder with the name 'file-1.0').
 
