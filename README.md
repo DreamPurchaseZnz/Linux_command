@@ -7,11 +7,28 @@
 
 [bash_reference Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion)
 
+## File numbers
+This should work:
+```
+find DIR_NAME -type f | wc -l
+```
+Explanation:
+```
+-type f                   # to include only files.
+| (and not ¦)             # redirects find command's standard output 
+                            to wc command's standard input.
+wc                        # (short for word count) counts newlines, 
+                            words and bytes on its input (docs).
+-l                        # to count just newlines.
+```
+
 ## HowTo: Check If a Directory Exists In a Shell Script
 ```
 [ -d "/path/to/dir" ] && echo "Directory /path/to/dir exists."
 [ ! -d "/path/to/dir" ] && echo "Directory /path/to/dir DOES NOT exists."
-[ -d "/path/to/dir" ] && echo "Directory /path/to/dir exists." || echo "Error: Directory /path/to/dir does not exists."
+
+[ -d "/path/to/dir" ] && echo "Directory /path/to/dir exists." || 
+echo "Error: Directory /path/to/dir does not exists."
 ```
 ```
 if [ -d "/path/to/dir" ] 
@@ -185,8 +202,7 @@ Options
        --version
               Print the version number of xargs and exit.
 ```
-
-## Find
+### find
 find - search for files in a directory hierarchy
 ```
 find [-H] [-L] [-P] [-D debugopts] [-Olevel] [starting-point...]
