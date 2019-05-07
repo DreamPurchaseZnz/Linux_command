@@ -7,6 +7,24 @@
 
 [bash_reference Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion)
 
+## HowTo: Check If a Directory Exists In a Shell Script
+```
+[ -d "/path/to/dir" ] && echo "Directory /path/to/dir exists."
+[ ! -d "/path/to/dir" ] && echo "Directory /path/to/dir DOES NOT exists."
+[ -d "/path/to/dir" ] && echo "Directory /path/to/dir exists." || echo "Error: Directory /path/to/dir does not exists."
+```
+```
+if [ -d "/path/to/dir" ] 
+then
+    echo "Directory /path/to/dir exists." 
+else
+    echo "Error: Directory /path/to/dir does not exists."
+fi
+```
+
+
+
+
 ## Xargs and find
 This manual page documents the GNU version of xargs.  xargs reads
        items from the standard input, delimited by blanks (which can be
