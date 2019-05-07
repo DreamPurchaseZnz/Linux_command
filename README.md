@@ -22,7 +22,10 @@ cp [OPTION]... -t DIRECTORY SOURCE...
 -t, --target-directory=DIRECTORY
               copy all SOURCE arguments into DIRECTORY
 ```
-
+```
+cp test/  new-test                # copy files under the test folder to the new folder
+cp test  new-test                 # copy the test folder to the new folder.
+```
 
 ## File numbers
 This should work:
