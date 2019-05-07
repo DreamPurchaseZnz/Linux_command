@@ -7,6 +7,11 @@
 
 [bash_reference Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion)
 
+## Copy first n files into another folder
+```
+$ find . -maxdepth 1 -type f |head -1000|xargs cp -t "$destdir"
+```
+
 ## File numbers
 This should work:
 ```
