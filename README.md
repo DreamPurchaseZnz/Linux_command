@@ -9,8 +9,20 @@
 
 ## Copy first n files into another folder
 ```
-$ find . -maxdepth 1 -type f |head -1000|xargs cp -t "$destdir"
+find . -maxdepth 1 -type f |head -1000|xargs cp -t "$destdir"
 ```
+copy
+Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY
+```
+cp [OPTION]... [-T] SOURCE DEST
+cp [OPTION]... SOURCE... DIRECTORY
+cp [OPTION]... -t DIRECTORY SOURCE...
+```
+```
+-t, --target-directory=DIRECTORY
+              copy all SOURCE arguments into DIRECTORY
+```
+
 
 ## File numbers
 This should work:
