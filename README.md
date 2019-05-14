@@ -7,6 +7,19 @@
 
 [bash_reference Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion)
 
+## Use SCP Command to Securely Transfer Files
+SCP (secure copy) is a command line utility that allows you to securely copy files and directories between two locations.
+
+With scp, you can copy a file or directory:
+```
+From your local system to a remote system.
+From a remote system to your local system.
+Between two remote systems from your local system.
+```
+The scp utility expressions take the following form:
+```
+scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
+```
 ## Link
 ```
 ln
