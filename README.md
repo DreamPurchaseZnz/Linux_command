@@ -7,6 +7,10 @@
 
 [bash_reference Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion)
 
+
+
+
+
 ## Use SCP Command to Securely Transfer Files
 SCP (secure copy) is a command line utility that allows you to securely copy files and directories between two locations.
 
@@ -1558,10 +1562,78 @@ tac                                       # tac is actually cat in reverse; Give
 
 ## Grep and Regular Expressions
 The basic behaviour of egrep is that it will print the entire line for every line which contains a string of characters matching the given pattern. This is important to note, we are not searching for a word but a string of characters.
+
+### Grep
+The grep command is used to search text. It searches the given file for lines containing a match to the given strings or words. It is one of the most useful commands on Linux and Unix-like system. Let us see how to use grep on a Linux or Unix like system.
 ```
-egrep [command line options]<pattern>[path]   
+grep [command line options]<pattern>[path]
+
+grep 'word' filename
+grep 'word' file1 file2 file3
+grep 'string1 string2'  filename
+cat otherfile | grep 'something'
+command | grep 'something'
+command option1 | grep 'data'
+grep --color 'data' fileName
 ```
 
+The name, “grep”, derives from the command used to perform a similar operation, using the Unix/Linux text editored:
+```
+g/re/p
+```
+grep command examples
+Common grep command explained with examples in Linux:
+```
+grep 'word' filename         # Search any line that contains the word in filename on Linux
+grep -i 'bar' file1          # A case-insensitive search for the word ‘bar’ in Linux and Unix
+grep -R 'foo'                # Search all files in the current directory and in all of its subdirectories 
+                              in Linux for the word ‘foo’
+grep -c 'nixcraft' frontpage.md           # Search and display the total number of times 
+                                            that the string ‘nixcraft’ appears 
+                                            in a file named frontpage.md
+```
+#### use grep to search words only
+When you search for boo, grep will match fooboo, boo123, barfoo35 and more. You can force the grep command to select only those lines containing matches that form whole words i.e. match only boo word:
+```
+$ grep -w "boo" file
+```
+#### use grep to search 2 different words
+Use the egrep command as follows:
+```
+$ egrep -w 'word1|word2' /path/to/file
+```
+#### Force grep invert match
+You can use -v option to print inverts the match; that is, it matches only those lines that do not contain the given word. For example print all line that do not contain the word bar:
+```
+$ grep -v bar /path/to/file
+```
+#### UNIX / Linux pipes and grep command
+Display cpu model name:
+```
+# cat /proc/cpuinfo | grep -i 'Model'
+```
+However, above command can be also used as follows without shell pipe:
+```
+# grep -i 'Model' /proc/cpuinfo
+```
+#### conclusion
+```
+Linux grep command options	Description
+-i	Ignore case distinctions on Linux and Unix
+-w	Force PATTERN to match only whole words
+-v	Select non-matching lines
+-n	Print line number with output lines
+-h	Suppress the Unix file name prefix on output
+-r	Search directories recursivly on Linux
+-R	Just like -r but follow all symlinks
+-l	Print only names of FILEs with selected lines
+-c	Print only a count of selected lines per FILE
+--color	Display matched pattern in colors
+```
+
+
+
+### Regular Expressions
 ```
 . (dot) - a single character.
 ? - the preceding character matches 0 or 1 times only.
