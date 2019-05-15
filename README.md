@@ -25,9 +25,19 @@ The scp utility expressions take the following form:
 scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
 ```
 ## Link
+Create a hard link to the file public_html/myfile1.txt in the current directory.
 ```
-ln
+ln public_html/myfile1.txt
 ```
+Create a symbolic link to the file public_html/myfile1.txt in the current directory.
+```
+ln -s public_html/myfile1.txt
+```
+Create a symbolic link to the directory public_html named webstuff.
+```
+ln -s public_html/ webstuff
+```
+
 
 ## Copy first n files into another folder
 ```
@@ -47,6 +57,35 @@ cp [OPTION]... -t DIRECTORY SOURCE...
 ```
 cp test/  new-test                # copy files under the test folder to the new folder
 cp test  new-test                 # copy the test folder to the new folder.
+cp a.txt b.txt
+```
+### Copying multiple files to a directory
+Or, perhaps you want to copy multiple files into another directory. To accomplish this, you can specify multiple files as the source, and a directory name as the destination
+```
+cp ~/pictures/picture-*.jpg        ~/picture-backup
+```
+### Copying files recursively
+You can use cp to copy entire directory structures from one place to another using the -R option to perform a recursive copy. Let's say you are the user steve and you have a directory, /home/steve/files, which contains many files and subdirectories. You want to copy all those files, and all the subdirectories (and the files and subdirectories they contain), to a new location, /home/steve/files-backup. You can copy all of them using the command:
+
+```
+cp -R ~/files ~/files-backup
+```
+### Creating symbolic links instead of copying data
+
+Another useful trick is to use cp to create symbolic links to your source files. You may already be familiar with using the ln command to create symlinks; cp is a great way to create multiple symlinks all at once.
+
+cp will create symbolic links if you specify the -s option. So, for instance,
+```
+cp -s file.txt file2.txt
+```
+This will work with a recursive copy, as well. So the command:
+```
+cp -R -s ~/myfiles ~/myfiles2
+```
+### Copy a file into another directory, and give it a new name
+Creates a copy of the file in the working directory named origfile. The copy will be named newfile, and will be located in the directory /directory/subdirectory.
+```
+cp origfile /directory/subdirectory/newfile
 ```
 
 ## File numbers
@@ -96,154 +135,7 @@ xargs [options] [command [initial-arguments]]
 ```
 The specified command will be invoked as many times as necessary to use up the list of input items. Some commands can usefully be executed in parallel too; see the -P option
 
-Options
-```
- -0, --null
-              Input items are terminated by a null character instead of by
-              whitespace, and the quotes and backslash are not special
-              (every character is taken literally).  Disables the end of
-              file string, which is treated like any other argument.  Useful
-              when input items might contain white space, quote marks, or
-              backslashes.  The GNU find -print0 option produces input
-              suitable for this mode.
 
-       -a file, --arg-file=file
-              Read items from file instead of standard input.  If you use
-              this option, stdin remains unchanged when commands are run.
-              Otherwise, stdin is redirected from /dev/null.
-
-       --delimiter=delim, -d delim
-              Input items are terminated by the specified character.  The
-              specified delimiter may be a single character, a C-style
-              character escape such as \n, or an octal or hexadecimal escape
-              code.  Octal and hexadecimal escape codes are understood as
-              for the printf command.   Multibyte characters are not
-              supported.  When processing the input, quotes and backslash
-              are not special; every character in the input is taken
-              literally.  The -d option disables any end-of-file string,
-              which is treated like any other argument.  You can use this
-              option when the input consists of simply newline-separated
-              items, although it is almost always better to design your
-              program to use --null where this is possible.
-
-       -E eof-str
-              Set the end of file string to eof-str.  If the end of file
-              string occurs as a line of input, the rest of the input is
-              ignored.  If neither -E nor -e is used, no end of file string
-              is used.
-
-       -e[eof-str], --eof[=eof-str]
-              This option is a synonym for the -E option.  Use -E instead,
-              because it is POSIX compliant while this option is not.  If
-              eof-str is omitted, there is no end of file string.  If
-              neither -E nor -e is used, no end of file string is used.
-
-       -I replace-str
-              Replace occurrences of replace-str in the initial-arguments
-              with names read from standard input.  Also, unquoted blanks do
-              not terminate input items; instead the separator is the
-              newline character.  Implies -x and -L 1.
-
-       -i[replace-str], --replace[=replace-str]
-              This option is a synonym for -Ireplace-str if replace-str is
-              specified.  If the replace-str argument is missing, the effect
-              is the same as -I{}.  This option is deprecated; use -I
-              instead.
-
-       -L max-lines
-              Use at most max-lines nonblank input lines per command line.
-              Trailing blanks cause an input line to be logically continued
-              on the next input line.  Implies -x.
-
-       -l[max-lines], --max-lines[=max-lines]
-              Synonym for the -L option.  Unlike -L, the max-lines argument
-              is optional.  If max-lines is not specified, it defaults to
-              one.  The -l option is deprecated since the POSIX standard
-              specifies -L instead.
-
-       -n max-args, --max-args=max-args
-              Use at most max-args arguments per command line.  Fewer than
-              max-args arguments will be used if the size (see the -s
-              option) is exceeded, unless the -x option is given, in which
-              case xargs will exit.
-
-       -P max-procs, --max-procs=max-procs
-              Run up to max-procs processes at a time; the default is 1.  If
-              max-procs is 0, xargs will run as many processes as possible
-              at a time.  Use the -n option or the -L option with -P;
-              otherwise chances are that only one exec will be done.  While
-              xargs is running, you can send its process a SIGUSR1 signal to
-              increase the number of commands to run simultaneously, or a
-              SIGUSR2 to decrease the number.  You cannot increase it above
-              an implementation-defined limit (which is shown with --show-
-              limits).  You cannot decrease it below 1.  xargs never
-              terminates its commands; when asked to decrease, it merely
-              waits for more than one existing command to terminate before
-              starting another.
-
-              Please note that it is up to the called processes to properly
-              manage parallel access to shared resources.  For example, if
-              more than one of them tries to print to stdout, the output
-              will be produced in an indeterminate order (and very likely
-              mixed up) unless the processes collaborate in some way to
-              prevent this.  Using some kind of locking scheme is one way to
-              prevent such problems.  In general, using a locking scheme
-              will help ensure correct output but reduce performance.  If
-              you don't want to tolerate the performance difference, simply
-              arrange for each process to produce a separate output file (or
-              otherwise use separate resources).
-
-       -o, --open-tty
-              Reopen stdin as /dev/tty in the child process before executing
-              the command.  This is useful if you want xargs to run an
-              interactive application.
-
-       -p, --interactive
-              Prompt the user about whether to run each command line and
-              read a line from the terminal.  Only run the command line if
-              the response starts with `y' or `Y'.  Implies -t.
-
-       --process-slot-var=name
-              Set the environment variable name to a unique value in each
-              running child process.  Values are reused once child processes
-              exit.  This can be used in a rudimentary load distribution
-              scheme, for example.
-
-       -r, --no-run-if-empty
-              If the standard input does not contain any nonblanks, do not
-              run the command.  Normally, the command is run once even if
-              there is no input.  This option is a GNU extension.
-
-       -s max-chars, --max-chars=max-chars
-              Use at most max-chars characters per command line, including
-              the command and initial-arguments and the terminating nulls at
-              the ends of the argument strings.  The largest allowed value
-              is system-dependent, and is calculated as the argument length
-              limit for exec, less the size of your environment, less 2048
-              bytes of headroom.  If this value is more than 128KiB, 128Kib
-              is used as the default value; otherwise, the default value is
-              the maximum.  1KiB is 1024 bytes.  xargs automatically adapts
-              to tighter constraints.
-
-       --show-limits
-              Display the limits on the command-line length which are
-              imposed by the operating system, xargs' choice of buffer size
-              and the -s option.  Pipe the input from /dev/null (and perhaps
-              specify --no-run-if-empty) if you don't want xargs to do
-              anything.
-
-       -t, --verbose
-              Print the command line on the standard error output before
-              executing it.
-
-       -x, --exit
-              Exit if the size (see the -s option) is exceeded.
-
-       --help Print a summary of the options to xargs and exit.
-
-       --version
-              Print the version number of xargs and exit.
-```
 ### find
 find - search for files in a directory hierarchy
 ```
