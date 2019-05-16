@@ -38,6 +38,11 @@ matplotlib, scipy, numpy， sklearn, pandas, scikit-learn
 
 
 ## install tensorflow
+To get the information from conda
+```
+conda info
+```
+
 ```
 conda config --set proxy_servers.http http://xxxx:huawei@10.61.34.138:3128
 conda config --set proxy_servers.https http://xxxx:huawei@10.61.34.138:3128
