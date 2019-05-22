@@ -37,7 +37,17 @@ Create a symbolic link to the directory public_html named webstuff.
 ```
 ln -s public_html/ webstuff
 ```
-
+You can use rm to delete the symlink.
+Example:
+```
+-rw-rw-r-- 1 2014-01-02 09:21 tmo
+lrwxrwxrwx 1 2014-01-02 09:21 tmo2 -> tmo
+```
+Then ...
+```
+rm tmo2
+```
+will remove the symlink.
 
 ## Copy first n files into another folder
 ```
