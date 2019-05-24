@@ -7,6 +7,40 @@
 
 [bash_reference Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion)
 
+## Compare two files for matching lines and store positive results
+
+```
+File 1:
+A0001  C001
+B0003  C896
+A0024  C234
+.
+B1542  C231
+.
+upto 28412 such lines
+```
+File 2:
+```
+A0001
+A0024
+B1542
+.
+.
+and 12000 such lines.
+```
+
+Use awk:
+```
+$ awk 'FNR==NR{a[$1];next}($1 in a){print}' file2 file1
+A0001   C001
+A0024   C234
+B1542   C231
+```
+Or
+```
+grep -Ff File2 File1
+```
+The -f File2 reads the patterns from File2 and the -F treats the patterns as fixed strings (ie no regexes used).
 
 
 
