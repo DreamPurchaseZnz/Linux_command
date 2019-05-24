@@ -512,7 +512,7 @@ set | less
 ### Creating Shell Variables
 ```
 TEST_VAR='Hello World!'
-set | grep TEST_VAR                       # We can see this by grepping for our new variable 
+set | TEST_VAR                       # We can see this by grepping for our new variable 
                                             within the set output
 ```
 - When we set a variable, its name followed directly by an equals sign(=)
@@ -1521,17 +1521,21 @@ However, above command can be also used as follows without shell pipe:
 #### conclusion
 ```
 Linux grep command options	Description
--i	Ignore case distinctions on Linux and Unix
--w	Force PATTERN to match only whole words
--v	Select non-matching lines
--n	Print line number with output lines
--h	Suppress the Unix file name prefix on output
--r	Search directories recursivly on Linux
--R	Just like -r but follow all symlinks
--l	Print only names of FILEs with selected lines
--c	Print only a count of selected lines per FILE
+-i  Ignore case distinctions on Linux and Unix
+-w  Force PATTERN to match only whole words
+-v  Select non-matching lines
+-n  Print line number with output lines
+-h  Suppress the Unix file name prefix on output
+-r  Search directories recursivly on Linux
+-R  Just like -r but follow all symlinks
+-l  Print only names of FILEs with selected lines
+-c  Print only a count of selected lines per FILE
 --color	Display matched pattern in colors
+-f  file : Takes patterns from file, one per line.
 ```
+
+
+
 
 
 
