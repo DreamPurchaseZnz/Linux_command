@@ -1200,6 +1200,7 @@ if [ -e path ]; then echo "whatever" fi
 short for "stream editor", allow you to filter and transform text.
 ```
 s/BRE/replacement/flags
+sed 's/find/replace/flags' file
 ```
 Substitute the replacement string for instances of the BRE in the pattern space. Any character other than backslash or newline can be used instead of a slash to delimit the BRE and the replacement. Within the BRE and the replacement, the BRE delimiter itself can be used as a literal character if it is preceded by a backslash."
 
@@ -1240,6 +1241,23 @@ sed 's|/a/b/c/|/d/e/f/|'
 sed 's /a/b/c/ /d/e/f/ '       # yes, even space
 # etc.
 ```
+### Remove character
+```
+sed 's/a//' file            # To remove a specific character a
+sed 's/^.//' file           # remove 1st character
+sed 's/.$//' file           # remove last character of every line
+sed 's/.//;s/.$//' file     # Two commands can be given together 
+                              with a semi-colon separated in between
+sed 's/x$//' file           # To remove last character only if it is a specific character
+sed 's/...//' file          # remove 1st 3 characters of every line
+                              A single dot(.) removes 1st character, 
+                              3 dots remove 1st three characters
+sed -r 's/.{4}//' file      # To remove 1st n characters of every line
+sed -r 's/(.{3}).*/\1/' file # remove everything except the 1st n characters in every line
+sed 's/[aoe]//g' file        # remove multiple characters present in a file
+```
+
+
 
 ## Vi Text Editor
 
