@@ -51,7 +51,12 @@ Returns the value of expression
 True if expression is false.
 
 # Grouping Commands
-
-
+## ()
+```
+( list )
+```
+open a subshell
+## {}
+current shell
 
 
