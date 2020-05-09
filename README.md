@@ -7,6 +7,8 @@
 
 [bash_reference Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion)
 
+[Comparison Operators](https://tldp.org/LDP/abs/html/comparison-ops.html)
+
 ## Compare two files for matching lines and store positive results
 
 ```
